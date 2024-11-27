@@ -15,13 +15,11 @@ return function()
 			-- trouble
 			TroubleIconDirectory = { fg = "#868687" },
 			TroubleIconFile = { fg = "#6DC85E" },
-			PmenuSel = { bg = "#282C34", fg = "NONE" },
-			Pmenu = { fg = "#C5CDD9", bg = "#22252A" },
 
 			CmpItemAbbrDeprecated = { fg = "#7E8294", bg = "NONE", strikethrough = true },
 			CmpItemAbbrMatch = { fg = "#82AAFF", bg = "NONE", bold = true },
 			CmpItemAbbrMatchFuzzy = { fg = "#82AAFF", bg = "NONE", bold = true },
-			CmpItemMenu = { fg = "#C792EA", bg = "NONE", italic = true },
+			CmpItemMenu = { fg = "#C792EA", bg = "NONE", italic = false },
 			CmpItemKindField = { fg = "#EED8DA", bg = "#B5585F" },
 			CmpItemKindProperty = { fg = "#EED8DA", bg = "#B5585F" },
 			CmpItemKindEvent = { fg = "#EED8DA", bg = "#B5585F" },
