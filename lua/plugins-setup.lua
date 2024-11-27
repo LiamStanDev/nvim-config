@@ -23,7 +23,7 @@ require("lazy").setup({
 		require("ui.plugins"),
 		require("plugin-list"),
 	},
-	checker = { enabled = true },
+	-- checker = { enabled = true },
 	rocks = { enabled = false },
 })
 require("ui.colorscheme").setup()
