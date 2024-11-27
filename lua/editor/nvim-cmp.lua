@@ -31,19 +31,28 @@ local function window_setup()
 end
 
 local function format_colorful(entry, item)
-	local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, item)
-	local strings = vim.split(kind.kind, "%s", { trimempty = true })
-	kind.kind = " " .. (strings[1] or "") .. " "
-	kind.menu = "    (" .. (strings[2] or "") .. ")"
+	local lspkind = require("lspkind").cmp_format({
+		mode = "symbol_text",
+		maxwidth = {
+			abbr = 30,
+			menu = 40,
+		},
+		ellipsis_char = "...",
+		show_labelDetails = true,
+	})(entry, item)
+	local strings = vim.split(lspkind.kind, "%s", { trimempty = true })
+	-- print(vim.inspect(strings))
+	-- print(vim.inspect(item.menu))
+	item.kind = " " .. (strings[1] or "") .. " "
+	item.menu = item.menu
 
-	return kind
+	return item
 end
 
 M.config = function()
 	local cmp = require("cmp")
-	local config = require("core.globals")
-
 	local luasnip = require("luasnip")
+
 	cmp.setup({
 		active = true,
 		snippet = {
@@ -81,14 +90,6 @@ M.config = function()
 		}),
 		formatting = {
 			fields = { "kind", "abbr", "menu" },
-			source_names = {
-				nvim_lsp = "(LSP)",
-				path = "(Path)",
-				-- vsnip = "(Snippet)",
-				luasnip = "(Snippet)",
-				buffer = "(Buffer)",
-				copilot = "(Copilot)",
-			},
 			format = format_colorful,
 		},
 		sources = {
