@@ -80,13 +80,13 @@ config.linting_services = {
 
 -- debuger server
 -- INFO: Need to install manually install by mason, add in this section is not work.
--- config.dap_servers = {
--- 	"python",
--- 	"cppdbg",
--- 	"coreclr", -- csharp
--- 	"codelldb",
--- 	"delve", -- go
--- }
+config.dap_servers = {
+	"python",
+	"cppdbg",
+	"coreclr", -- csharp
+	"codelldb",
+	"delve", -- go
+}
 
 -- -----------------------------------------------------
 -- Others
@@ -109,9 +109,6 @@ config.which_key_window_border = "none" -- none, single, double, shadow
 -- show inline hint
 config.open_type_hint = true -- for variable
 config.open_parameter_hint = true
-
--- completion menu with text
-config.cmp_kind_text = true
 
 -- file filter for explorer(only for dotfiles)
 config.filter_files = {
