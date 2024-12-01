@@ -4,8 +4,7 @@ return function()
 	local keymap = vim.keymap.set
 
 	-- keymap
-	keymap("n", "<C-.>", "<cmd>Lspsaga code_action<cr>")
-	keymap("i", "<C-.>", "<cmd>Lspsaga code_action<cr>")
+	keymap("n", "ga", "<cmd>Lspsaga code_action<cr>")
 	keymap("n", "gD", "<cmd>Lspsaga peek_definition<CR>")
 	keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>") -- Use <C-t> to jump back
 	keymap("n", "gf", "<cmd>Lspsaga lsp_finder<CR>")
@@ -14,6 +13,12 @@ return function()
 	keymap("n", "gl", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
 	keymap("n", "gb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
 	keymap("n", "gh", "<cmd>Lspsaga hover_doc<CR>")
+	keymap("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+	keymap("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+	keymap("n", "gr", "<cmd>Lspsaga rename ++project<CR>")
+	keymap("n", "go", "<cmd>Lspsaga outline<CR>")
+	-- keymap("n", "go", "<cmd>Lspsaga outline<CR>")
+	keymap("n", "go", "<cmd>Trouble symbols<CR>")
 
 	require("lspsaga").setup({
 		ui = {

@@ -92,13 +92,7 @@ return function()
 
 		-- lsp
 		{ "<leader>l", group = "LSP" },
-		{ "<leader>lf", "<CMD>Lspsaga finder<CR>", desc = "Finder" },
-		{ "<leader>la", "<CMD>Lspsaga code_action<CR>", desc = "Code Action" },
 		{ "<leader>lR", "<CMD>LspRestart<CR>", desc = "Lsp Restart" },
-		{ "<leader>lj", "<CMD>Lspsaga diagnostic_jump_next<CR>", desc = "Next Diagnostic" },
-		{ "<leader>lk", "<CMD>Lspsaga diagnostic_jump_prev<CR>", desc = "Prev Diagnostic" },
-		{ "<leader>lr", "<CMD>Lspsaga rename ++project<CR>", desc = "Rename" },
-		{ "<leader>lo", "<CMD>Lspsaga outline<CR>", desc = "Outline" },
 
 		-- search
 		{ "<leader>s", group = "Search" },

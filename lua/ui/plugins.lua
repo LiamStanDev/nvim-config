@@ -52,9 +52,7 @@ return {
 	-- for select and input ui
 	{
 		"stevearc/dressing.nvim", -- for input, and select ui
-		config = function()
-			require("dressing").setup()
-		end,
+		config = require("ui.dressing"),
 	},
 
 	-- messages, cmdline and the popupmenu
