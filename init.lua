@@ -39,7 +39,7 @@ config.lsp_servers = { -- see https://github.com/williamboman/mason-lspconfig.nv
 	"pylsp",
 	"bashls",
 	"dockerls",
-	"docker_compose_language_service",
+	-- "docker_compose_language_service",
 	"ts_ls",
 	"tailwindcss",
 	"taplo", -- toml lsp

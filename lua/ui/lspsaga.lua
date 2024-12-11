@@ -19,6 +19,8 @@ return function()
 	keymap("n", "go", "<cmd>Lspsaga outline<CR>")
 	-- keymap("n", "go", "<cmd>Lspsaga outline<CR>")
 	keymap("n", "go", "<cmd>Trouble symbols<CR>")
+	keymap("n", "<A-`>", "<cmd>Lspsaga term_toggle<CR>")
+	keymap("t", "<A-`>", "<cmd>Lspsaga term_toggle<CR>")
 
 	require("lspsaga").setup({
 		ui = {

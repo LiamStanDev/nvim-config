@@ -69,11 +69,23 @@
       },
       {
         "language": "yaml",
-        "path": "./docker/docker-compose.json"
+        "path": "./docker-compose.json"
+      },
+      {
+        "language": "yaml",
+        "path": "./kubernetes.json"
       },
       {
         "language": "make",
         "path": "./make.json"
+      },
+      {
+        "language": "sql",
+        "path": "./sql.json"
+      },
+      {
+        "language": "css",
+        "path": "./css.json"
       }
     ]
   }

@@ -34,7 +34,7 @@ return function()
 		{
 			"<leader>/",
 			"<CMD>DBUIToggle<CR>",
-			desc = "toggle database client",
+			desc = "Toggle database client",
 		},
 		{ "<leader>m", "<CMD>MarkdownPreviewToggle<CR>", desc = "Markdown Preview" },
 		-- { "<leader>r", ":%s/", desc = "Find and Replace in a word" },
