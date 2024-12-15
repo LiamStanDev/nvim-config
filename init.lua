@@ -76,6 +76,7 @@ config.linting_services = {
 	javascriptreact = { "eslint_d" },
 	typescript = { "eslint_d" },
 	typescriptreact = { "eslint_d" },
+	python = { "mypy" },
 }
 
 -- debuger server
