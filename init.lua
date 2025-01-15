@@ -36,10 +36,10 @@ config.lsp_servers = { -- see https://github.com/williamboman/mason-lspconfig.nv
 	"jsonls",
 	"lua_ls",
 	"cssls",
-	"pylsp",
+	"pylsp", -- pylsp doc more clean, and can reload mode no need to RestartLsp
+	-- "pyright",
 	"bashls",
 	"dockerls",
-	-- "docker_compose_language_service",
 	"ts_ls",
 	"tailwindcss",
 	"taplo", -- toml lsp
@@ -53,7 +53,8 @@ config.lsp_servers = { -- see https://github.com/williamboman/mason-lspconfig.nv
 -- INFO: Need to install manually install by mason
 config.formatter_services = {
 	lua = { "stylua" },
-	python = { "black" },
+	python = { "ruff_format" },
+	-- python = { "ruff_format", "ruff_fix" }, -- ruff_fix will auto fix lint
 	javascript = { "prettierd", "prettier", stop_after_first = true },
 	typescript = { "prettierd", "prettier", stop_after_first = true },
 	typescriptreact = { "prettierd", "prettier", stop_after_first = true },
@@ -76,7 +77,7 @@ config.linting_services = {
 	javascriptreact = { "eslint_d" },
 	typescript = { "eslint_d" },
 	typescriptreact = { "eslint_d" },
-	python = { "mypy" },
+	python = { "ruff" },
 }
 
 -- debuger server
