@@ -30,14 +30,25 @@ return function()
 			desc = "No Highlight",
 		},
 		{ "<leader>e", "<CMD>Neotree toggle<CR>", desc = "Explorer" },
+		-- {
+		-- 	"<leader>e",
+		-- 	function()
+		-- 		require("mini.files").open()
+		-- 	end,
+		-- 	desc = "Explorer",
+		-- },
 		{ "<leader>;", ":e $MYVIMRC<CR>", desc = "Configuration" },
 		{
 			"<leader>/",
 			"<CMD>DBUIToggle<CR>",
 			desc = "Toggle database client",
 		},
-		{ "<leader>m", "<CMD>MarkdownPreviewToggle<CR>", desc = "Markdown Preview" },
 		-- { "<leader>r", ":%s/", desc = "Find and Replace in a word" },
+
+		-- markdown
+		{ "<leader>m", group = "Markdown" },
+		{ "<leader>mm", "<CMD>RenderMarkdown toggle<CR>", desc = "Markdown Render Toggle" },
+		{ "<leader>mp", "<CMD>MarkdownPreviewToggle<CR>", desc = "Markdown Preview" },
 
 		-- buffer
 		{ "<leader>b", group = "Buffer" },
@@ -121,9 +132,9 @@ return function()
 		{
 			mode = { "n", "v" },
 			{ "<leader>a", group = "AI" },
-			-- { "<leader>ad", "<CMD>Copilot disable<CR>", desc = "Copilot Disable" },
-			-- { "<leader>ae", "<CMD>Copilot enable<CR>", desc = "Copilot Enable" },
-			{ "<leader>ac", "<CMD>CopilotChatToggle<CR>", desc = "Toggle Chat" },
+			{ "<leader>ad", "<CMD>Copilot disable<CR>", desc = "Copilot Disable" },
+			{ "<leader>ae", "<CMD>Copilot enable<CR>", desc = "Copilot Enable" },
+			{ "<leader>aa", "<CMD>CopilotChatToggle<CR>", desc = "Toggle Chat" },
 			{ "<leader>ae", "<CMD>CopilotChatExplain<CR>", desc = "Explain this" },
 			{ "<leader>ar", "<CMD>CopilotChatExplain<CR>", desc = "Review this" },
 			{ "<leader>af", "<CMD>CopilotChatFix<CR>", desc = "Fix this" },

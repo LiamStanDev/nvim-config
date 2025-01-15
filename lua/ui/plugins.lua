@@ -42,6 +42,13 @@ return {
 		},
 		config = require("ui.neotree"),
 	},
+	-- {
+	-- 	"echasnovski/mini.files",
+	-- 	version = "*",
+	-- 	config = function()
+	-- 		require("ui.mini-files").setup()
+	-- 	end,
+	-- },
 
 	-- status line
 	{ "nvim-lualine/lualine.nvim", event = "VeryLazy", config = require("ui.lualine") },
@@ -68,6 +75,18 @@ return {
 			},
 		},
 		config = require("ui.noice"),
+	},
+
+	-- copilot chat
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		dependencies = {
+			{ "zbirenbaum/copilot.lua" },
+			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+		},
+		build = "make tiktoken", -- Only on MacOS or Linux
+		opts = {},
+		config = require("ui.copilot-chat"),
 	},
 
 	-- toggle term

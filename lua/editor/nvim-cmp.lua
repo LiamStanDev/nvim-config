@@ -48,7 +48,6 @@ local function format_colorful(entry, item)
 
 	return item
 end
-
 M.config = function()
 	local cmp = require("cmp")
 	local luasnip = require("luasnip")
@@ -93,14 +92,13 @@ M.config = function()
 			format = format_colorful,
 		},
 		sources = {
-			{ name = "nvim_lsp", group_index = 1 },
+			{ name = "nvim_lsp", group_index = 2 },
 			{ name = "copilot", group_index = 2 },
 			{ name = "path" },
-			-- { name = "vsnip" },
 			{ name = "luasnip", group_index = 2 },
 			{ name = "buffer", group_index = 3 },
 			{ name = "nvim_lua", group_index = 3 },
-			-- { name = "nvim_lsp_signature_help" },
+			{ name = "render-markdown", group_index = 2 },
 		},
 		confirm_opts = {
 			-- behavior = cmp.ConfirmBehavior.Replace,
@@ -110,9 +108,27 @@ M.config = function()
 			completion = window_setup().completion,
 			documentation = window_setup().documentation,
 		},
-		experimental = {
-			ghost_text = false,
-			native_menu = false,
+		-- experimental = {
+		-- 	ghost_text = false,
+		-- 	native_menu = false,
+		-- },
+		sorting = {
+			priority_weight = 2,
+			comparators = {
+				require("copilot_cmp.comparators").prioritize,
+
+				-- Below is the default comparitor list and order for nvim-cmp
+				cmp.config.compare.offset,
+				-- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+				cmp.config.compare.exact,
+				cmp.config.compare.score,
+				cmp.config.compare.recently_used,
+				cmp.config.compare.locality,
+				cmp.config.compare.kind,
+				cmp.config.compare.sort_text,
+				cmp.config.compare.length,
+				cmp.config.compare.order,
+			},
 		},
 	})
 
@@ -123,10 +139,6 @@ M.config = function()
 			{ name = "buffer" },
 		},
 	})
-
-	-- Add parentheses after selecting function or method
-	-- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-	-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 end
 
 return M

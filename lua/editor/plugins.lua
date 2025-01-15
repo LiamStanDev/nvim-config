@@ -46,18 +46,18 @@ return {
 	},
 
 	-- copilot
-	-- {
-	-- 	"zbirenbaum/copilot-cmp",
-	-- 	config = require("editor.copilot"),
-	-- 	dependencies = {
-	--
-	-- 		{
-	-- 			"zbirenbaum/copilot.lua",
-	-- 			cmd = "Copilot",
-	-- 			event = "InsertEnter",
-	-- 		},
-	-- 	},
-	-- },
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = require("editor.copilot"),
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+	},
 
 	-- treesitter
 	{
