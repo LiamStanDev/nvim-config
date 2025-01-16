@@ -30,8 +30,8 @@ config.code_hight_servers = {
 }
 
 -- lsp server for auto completion
--- INFO: Need to manually install by mason.
-config.lsp_servers = { -- see https://github.com/williamboman/mason-lspconfig.nvim
+-- see https://github.com/williamboman/mason-lspconfig.nvim
+config.lsp_servers = {
 	"html",
 	"jsonls",
 	"lua_ls",
@@ -47,10 +47,11 @@ config.lsp_servers = { -- see https://github.com/williamboman/mason-lspconfig.nv
 	"gopls",
 	"cmake",
 	"clangd",
-	"omnisharp",
+	-- "omnisharp",
 }
 
--- INFO: Need to install manually install by mason
+-- formatters
+-- see: https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters
 config.formatter_services = {
 	lua = { "stylua" },
 	python = { "ruff_format" },
@@ -61,17 +62,18 @@ config.formatter_services = {
 	html = { "prettierd", "prettier", stop_after_first = true },
 	toml = { "prettierd", "prettier", stop_after_first = true },
 	json = { "prettierd", "prettier", stop_after_first = true },
-	go = { "gofmt" },
-	bash = { "beautysh" },
-	zsh = { "beautysh" },
-	shell = { "beautysh" },
+	bash = { "shfmt" },
+	zsh = { "shfmt" },
+	shell = { "shfmt" },
 	c = { "clang_format" },
 	cpp = { "clang_format" },
 	rust = { "rustfmt" },
-	cs = { "csharpier" },
+	-- cs = { "csharpier" },
 	sql = { "sqlfmt" },
 }
 
+-- linter
+-- see: https://github.com/mfussenegger/nvim-lint?tab=readme-ov-file#available-linters
 config.linting_services = {
 	javascript = { "eslint_d" },
 	javascriptreact = { "eslint_d" },
@@ -81,11 +83,11 @@ config.linting_services = {
 }
 
 -- debuger server
--- INFO: Need to install manually install by mason, add in this section is not work.
+-- see: https://github.com/jay-babu/mason-nvim-dap.nvim/blob/main/lua/mason-nvim-dap/mappings/source.lua
 config.dap_servers = {
 	"python",
 	"cppdbg",
-	"coreclr", -- csharp
+	-- "coreclr", -- csharp
 	"codelldb",
 	"delve", -- go
 }

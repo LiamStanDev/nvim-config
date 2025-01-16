@@ -1,13 +1,28 @@
 return {
 	-- services installer
-	{ "williamboman/mason.nvim", event = "VeryLazy", config = require("services.mason") },
+	{
+		"williamboman/mason.nvim",
+		event = "VeryLazy",
+		config = require("services.mason"),
+		dependencies = {
+			{
+				"WhoIsSethDaniel/mason-tool-installer.nvim",
+				event = "VeryLazy",
+				dependencies = {
+					-- mason tool installer need this to parse name to mason name
+					"williamboman/mason-lspconfig.nvim",
+					"jay-babu/mason-nvim-dap.nvim",
+				},
+			},
+		},
+	},
 
 	-- lsp
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
+			"williamboman/mason.nvim",
 			-- {
 			-- 	"ray-x/lsp_signature.nvim",
 			-- 	event = "VeryLazy",

@@ -7,5 +7,5 @@ return {
 		"--completion-style=bundled", -- more info when completion popup
 		"--header-insertion=iwyu", -- header only insert `include whay you use`
 	},
-	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+	filetypes = { "c", "cc", "cpp", "objc", "objcpp", "cuda" },
 }

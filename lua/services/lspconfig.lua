@@ -1,22 +1,11 @@
 return function()
-	-- install servers
-	local servers = require("core.globals").lsp_servers
-
-	-- NOTE: I just use it to install lsp server
-	require("mason-lspconfig").setup({
-		ensure_installed = servers,
-	})
 	-- -----------------------------------
 	-- ----------- capabilities ----------
 	-- -----------------------------------
-	-- local capabilities = vim.lsp.protocol.make_client_capabilities()
 	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 	-- html-lsp need this
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
-	-- nvim-ufo
-	-- Tell the server the capability of foldingRange,
-	-- Neovim hasn't added foldingRange to default
-	-- capabilities, users must add it manually
+	-- nvim-ufo need this
 	capabilities.textDocument.foldingRange = {
 		dynamicRegistration = false,
 		lineFoldingOnly = true,
@@ -29,13 +18,12 @@ return function()
 		local keymap = vim.keymap.set
 
 		-- lsp keymapsetting
+		-- nvim v10 (after) feature to show inlay_hint
+		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 
 		if client.name == "omnisharp" then
 			keymap("n", "gd", "<cmd>lua require('omnisharp_extended').lsp_definitions()<cr>")
 		end
-
-		-- nvim v10 (after) feature to show inlay_hint
-		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 
 		-- remove default formatter
 		-- for rust
@@ -45,6 +33,7 @@ return function()
 	-- --------------------------------------
 	-- ------- register lsp service ---------
 	-- --------------------------------------
+	local servers = require("core.globals").lsp_servers
 	for _, server in ipairs(servers) do
 		local opts = {
 			capabilities = capabilities,
