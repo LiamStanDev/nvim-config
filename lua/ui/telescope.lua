@@ -10,6 +10,8 @@ return function()
 				i = {
 					["<C-j>"] = actions.move_selection_next,
 					["<C-k>"] = actions.move_selection_previous,
+					["<C-v>"] = actions.file_vsplit,
+					["<C-s>"] = actions.file_split,
 				},
 				n = { ["q"] = require("telescope.actions").close },
 			},
@@ -27,6 +29,7 @@ return function()
 			},
 			file_ignore_patterns = {
 				".git/",
+				"build/",
 				".cache",
 				"%.o",
 				"%.a",

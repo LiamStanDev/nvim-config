@@ -16,7 +16,6 @@ return function()
 		{ "<leader>c", "<CMD>Bdelete!<CR>", desc = "Close Buffer" },
 		{
 			"<leader>p",
-
 			function()
 				require("telescope.builtin").find_files(
 					require("telescope.themes").get_dropdown({ previewer = false, hidden = true })
@@ -43,7 +42,7 @@ return function()
 			"<CMD>DBUIToggle<CR>",
 			desc = "Toggle database client",
 		},
-		-- { "<leader>r", ":%s/", desc = "Find and Replace in a word" },
+		{ "<leader>\\", "<CMD>CopilotChatToggle<CR>", desc = "Toggle Chat" },
 
 		-- markdown
 		{ "<leader>m", group = "Markdown" },
@@ -107,16 +106,16 @@ return function()
 
 		-- search
 		{ "<leader>s", group = "Search" },
-		{ "<leader>sb", "<CMD>Telescope buffers<CR>", desc = "Search Buffers" },
-		{ "<leader>sc", "<CMD>Telescope colorscheme<CR>", desc = "Colorscheme" },
 		{ "<leader>sf", "<CMD>Telescope find_files<CR>", desc = "Find File" },
-		{ "<leader>sn", "<CMD>Telescope notify<CR>", desc = "Notify History" },
-		{ "<leader>sH", "<CMD>Telescope help_tags<CR>", desc = "Find Help" },
-		{ "<leader>sh", "<CMD>Telescope highlights<CR>", desc = "Find highlight groups" },
-		{ "<leader>sM", "<CMD>Telescope man_pages<CR>", desc = "Man Pages" },
-		{ "<leader>sr", "<CMD>Telescope oldfiles<CR>", desc = "Open Recent File" },
 		{ "<leader>st", "<CMD>Telescope live_grep<CR>", desc = "Text" },
-		{ "<leader>sC", "<CMD>Telescope commands<CR>", desc = "Commands" },
+		{ "<leader>sn", "<CMD>Telescope notify<CR>", desc = "Notify History" },
+		{ "<leader>sc", "<CMD>Telescope colorscheme<CR>", desc = "Colorscheme" },
+		{ "<leader>sr", "<CMD>Telescope oldfiles<CR>", desc = "Open Recent File" },
+		{ "<leader>sm", "<CMD>Telescope man_pages<CR>", desc = "Man Pages" },
+		-- { "<leader>sh", "<CMD>Telescope help_tags<CR>", desc = "Find Help" },
+		-- { "<leader>sb", "<CMD>Telescope buffers<CR>", desc = "Search Buffers" },
+		-- { "<leader>sH", "<CMD>Telescope highlights<CR>", desc = "Find highlight groups" },
+		-- { "<leader>sC", "<CMD>Telescope commands<CR>", desc = "Commands" },
 
 		-- trouble
 		{ "<leader>xx", "<CMD>Trouble diagnostics toggle<cr>", desc = "Diagnostics" },
@@ -149,7 +148,8 @@ return function()
 		icons = {
 			breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
 			separator = "  ", -- symbol used between a key and it's label
-			group = "+", -- symbol prepended to a group
+			group = "+", -- symbol prepended to a group,
+			mappings = false,
 		},
 
 		keys = {
@@ -158,14 +158,7 @@ return function()
 		},
 
 		win = {
-			no_overlap = true,
 			border = config.which_key_window_border, -- none, single, double, shadow
-			padding = { 1, 2 }, -- extra window padding [top/bottom, right/left]
-			title = true,
-			title_pos = "center",
-			zindex = 1000,
-			bo = {},
-			wo = {},
 		},
 		layout = {
 			height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -173,9 +166,6 @@ return function()
 			spacing = 3, -- spacing between columns
 			align = "left", -- align columns left, center or right
 		},
-		show_help = false, -- show help message on the command line when the popup is visible
-		show_keys = false, -- show the currently pressed key and its label as a message in the command line
-		triggers = { { "<auto>", mode = { "n", "v" } } },
 
 		disable = {
 			buftypes = {},

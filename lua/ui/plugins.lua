@@ -4,6 +4,25 @@ return {
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
 	{ "nvim-lua/plenary.nvim", lazy = true },
 
+	-- keymap ui
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		config = require("ui.which-key"),
+		dependencies = {
+			{ "echasnovski/mini.icons", version = false },
+		},
+	},
+
+	-- telescope
+	{
+		"nvim-telescope/telescope.nvim",
+		branch = "0.1.x",
+		event = "VeryLazy",
+		config = require("ui.telescope"),
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+
 	-- dashboard
 	{
 		"goolord/alpha-nvim",
@@ -26,6 +45,13 @@ return {
 		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio", "folke/neodev.nvim" },
 	},
 
+	-- diagnostic navigation
+	{
+		"folke/trouble.nvim",
+		opts = {},
+		cmd = "Trouble",
+	},
+
 	-- explore
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -42,13 +68,6 @@ return {
 		},
 		config = require("ui.neotree"),
 	},
-	-- {
-	-- 	"echasnovski/mini.files",
-	-- 	version = "*",
-	-- 	config = function()
-	-- 		require("ui.mini-files").setup()
-	-- 	end,
-	-- },
 
 	-- status line
 	{ "nvim-lualine/lualine.nvim", event = "VeryLazy", config = require("ui.lualine") },
@@ -77,6 +96,27 @@ return {
 		config = require("ui.noice"),
 	},
 
+	-- toggle term
+	{ "akinsho/toggleterm.nvim", version = "*", config = require("ui.toggleterm") },
+
+	-- database client
+	{
+		"kristijanhusak/vim-dadbod-ui",
+		dependencies = {
+			{ "tpope/vim-dadbod", lazy = true },
+			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+		},
+		cmd = {
+			"DBUI",
+			"DBUIToggle",
+			"DBUIAddConnection",
+			"DBUIFindBuffer",
+		},
+		init = function()
+			vim.g.db_ui_use_nerd_fonts = 1
+		end,
+	},
+
 	-- copilot chat
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
@@ -88,7 +128,4 @@ return {
 		opts = {},
 		config = require("ui.copilot-chat"),
 	},
-
-	-- toggle term
-	-- { "akinsho/toggleterm.nvim", version = "*", config = require("ui.toggleterm") },
 }

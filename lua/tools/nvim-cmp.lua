@@ -3,7 +3,7 @@ local M = {}
 M.config = function()
 	local cmp = require("cmp")
 	local luasnip = require("luasnip")
-	local utils = require("editor.utils")
+	local utils = require("tools.utils")
 
 	cmp.setup({
 		active = true,

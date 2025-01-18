@@ -1,4 +1,121 @@
 return {
+	-- fcitx
+	-- { "h-hg/fcitx.nvim", event = "InsertEnter" },
+
+	-- auto autopairs
+	{ "windwp/nvim-autopairs", event = "InsertEnter", config = require("tools.autopairs") },
+
+	-- comment
+	{ "numToStr/Comment.nvim", event = { "BufNewFile", "BufReadPre" }, config = require("tools.comment") },
+
+	-- indnet line
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		event = { "BufReadPost", "BufNewFile" },
+		config = require("tools.indentline"),
+	},
+	{
+		"echasnovski/mini.indentscope",
+		version = "*",
+		event = { "BufReadPre", "BufNewFile" },
+		init = require("tools.indentscope").init,
+		config = require("tools.indentscope").config,
+	},
+
+	-- cmp
+	{
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"saadparwaiz1/cmp_luasnip",
+			"hrsh7th/cmp-nvim-lua",
+			-- "rcarriga/cmp-dap",
+			"onsails/lspkind.nvim",
+			{
+				"L3MON4D3/LuaSnip",
+				version = "v2.*",
+				build = "make install_jsregexp",
+				config = require("tools.luasnippet"),
+			},
+		},
+		config = require("tools.nvim-cmp").config,
+	},
+
+	-- copilot
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = require("tools.copilot"),
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+	},
+
+	-- treesitter
+	{
+		"nvim-treesitter/nvim-treesitter",
+		version = false, -- last release is way too old and doesn't work on Windows
+		build = ":TSUpdate",
+		event = { "BufReadPost", "BufNewFile" },
+		config = require("tools.treesitter"),
+		dependencies = {
+			{
+
+				"windwp/nvim-ts-autotag",
+				config = require("tools.autotag"),
+			},
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			"IndianBoy42/tree-sitter-just",
+		},
+	},
+
+	-- navigator with tmux
+	-- "christoomey/vim-tmux-navigator",
+
+	-- code folding
+	{
+		"kevinhwang91/nvim-ufo",
+		config = require("tools.nvim-ufo").config,
+		init = require("tools.nvim-ufo").init,
+		event = { "BufReadPost" },
+		dependencies = {
+			"kevinhwang91/promise-async",
+		},
+	},
+
+	-- left line number column segment (ufo, dap, gitsign)
+	{
+		"luukvbaal/statuscol.nvim",
+		config = function()
+			local builtin = require("statuscol.builtin")
+			require("statuscol").setup({
+				relculright = true,
+				segments = {
+					{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+					{ text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+					{ text = { "%s" }, click = "v:lua.ScSa" },
+				},
+			})
+		end,
+	},
+
+	-- surround
+	{
+		"kylechui/nvim-surround",
+		version = "*",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup()
+		end,
+	},
 	{
 		"s1n7ax/nvim-window-picker",
 		name = "window-picker",
@@ -10,23 +127,6 @@ return {
 	},
 
 	{ "famiu/bufdelete.nvim", event = "VeryLazy" },
-
-	-- keymap ui
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		config = require("tools.which-key"),
-		dependencies = {
-			{ "echasnovski/mini.icons", version = false },
-		},
-	},
-
-	-- diagnostic navigation
-	{
-		"folke/trouble.nvim",
-		opts = {},
-		cmd = "Trouble",
-	},
 
 	-- todo comment
 	{
@@ -54,15 +154,6 @@ return {
 	},
 
 	-- move
-	-- NOTE: deprecated
-	-- {
-	-- 	"smoka7/hop.nvim",
-	-- 	version = "*",
-	-- 	opts = {
-	-- 		keys = "etovxqpdygfblzhckisuran",
-	-- 	},
-	-- 	config = require("tools.hop"),
-	-- },
 	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
@@ -77,36 +168,9 @@ return {
         },
 	},
 
-	-- telescopte
-	{
-		"nvim-telescope/telescope.nvim",
-		event = "VeryLazy",
-		config = require("tools.telescope"),
-	},
-
 	-- git
 	{ "lewis6991/gitsigns.nvim", event = "VeryLazy", config = require("tools.gitsigns") },
 	{ "tpope/vim-fugitive", event = "VeryLazy" },
-	{ "akinsho/toggleterm.nvim", version = "*", config = require("tools.toggleterm") },
-
-	-- database client
-	{
-		"kristijanhusak/vim-dadbod-ui",
-		dependencies = {
-			{ "tpope/vim-dadbod", lazy = true },
-			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
-		},
-		cmd = {
-			"DBUI",
-			"DBUIToggle",
-			"DBUIAddConnection",
-			"DBUIFindBuffer",
-		},
-		init = function()
-			-- Your DBUI configuration
-			vim.g.db_ui_use_nerd_fonts = 1
-		end,
-	},
 
 	-- markdown
 	{
