@@ -6,6 +6,9 @@ M.get_mason_packages = function(config)
 
 	-- Add LSP servers
 	for _, server in ipairs(config.lsp_servers) do
+		if server == "ts_ls" then
+			server = "typescript-language-server"
+		end
 		if not seen[server] then
 			table.insert(packages, server)
 			seen[server] = true
