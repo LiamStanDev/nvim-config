@@ -42,7 +42,6 @@ return function()
 			"<CMD>DBUIToggle<CR>",
 			desc = "Toggle database client",
 		},
-		{ "<leader>\\", "<CMD>CopilotChatToggle<CR>", desc = "Toggle Chat" },
 
 		-- markdown
 		{ "<leader>m", group = "Markdown" },

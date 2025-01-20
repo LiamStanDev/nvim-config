@@ -1,13 +1,16 @@
 return function()
+	local keymap = vim.keymap.set
+	keymap("n", "<C-\\>", "<CMD>CopilotChatToggle<CR>")
+	keymap("i", "<C-\\>", "<CMD>CopilotChatToggle<CR>")
 	require("CopilotChat").setup({
 		model = "gpt-4o", -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
 		agent = "copilot", -- Default agent to use, see ':CopilotChatAgents' for available agents (can be specified manually in prompt via @).
 		context = nil, -- Default context or array of contexts to use (can be specified manually in prompt via #).
 
 		window = {
-			layout = "float", -- 'vertical', 'horizontal', 'float', 'replace'
+			layout = "horizontal", -- 'vertical', 'horizontal', 'float', 'replace'
 			width = 0.5, -- fractional width of parent, or absolute width in columns when > 1
-			height = 0.8, -- fractional height of parent, or absolute height in rows when > 1
+			height = 0.3, -- fractional height of parent, or absolute height in rows when > 1
 			-- Options below only apply to floating windows
 			relative = "editor", -- 'editor', 'win', 'cursor', 'mouse'
 			border = "single", -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
