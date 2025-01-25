@@ -11,20 +11,9 @@ return function()
 	})
 
 	local config = require("core.globals")
-	local services = require("services.utils").get_mason_packages(config)
-	-- print(vim.inspect(services))
+	local service_identifiers = require("services.utils").get_service_identifiers(config)
 
 	require("mason-tool-installer").setup({
-		ensure_installed = services,
-		auto_update = true,
-		-- run_on_start = true,
-		-- debounce_hours = 5,
-		integrations = {
-			["mason-lspconfig"] = true,
-			["mason-null-ls"] = false,
-			["mason-nvim-dap"] = true,
-		},
+		ensure_installed = service_identifiers,
 	})
-
-	-- local servers = require("core.globals").lsp_servers
 end

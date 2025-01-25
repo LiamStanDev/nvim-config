@@ -1,56 +1,57 @@
 local M = {}
 
-M.get_mason_packages = function(config)
+function M.append_lists(list1, list2)
+	for _, value in ipairs(list2) do
+		table.insert(list1, value)
+	end
+end
+
+function M.get_service_identifiers(config)
+	local mappings = require("services.mappings")
 	local packages = {}
-	local seen = {}
+	local packages_seen = {}
 
 	-- Add LSP servers
 	for _, server in ipairs(config.lsp_servers) do
-		if server == "ts_ls" then
-			server = "typescript-language-server"
-		end
-		if not seen[server] then
-			table.insert(packages, server)
-			seen[server] = true
+		local pkg = mappings.lspconfig_to_package[server]
+		if pkg and not packages_seen[pkg] then
+			table.insert(packages, pkg)
+			packages_seen[pkg] = true
 		end
 	end
 
 	-- Add formatter services
-	for _, formatters in pairs(config.formatter_services) do
-		for _, formatter in ipairs(formatters) do
-			if type(formatter) == "string" then
-				if formatter:find("ruff") then
-					formatter = "ruff"
-				end
-				if formatter == "clang_format" then
-					formatter = "clang-format"
-				end
-				if not seen[formatter] then
-					table.insert(packages, formatter)
-					seen[formatter] = true
+	for _, servers in pairs(config.formatter_services) do
+		for _, server in ipairs(servers) do
+			if type(server) == "string" then
+				local pkg = mappings.conform_to_package[server]
+				if pkg and not packages_seen[pkg] then
+					table.insert(packages, pkg)
+					packages_seen[pkg] = true
 				end
 			end
 		end
 	end
 
 	-- Add linting services
-	for _, linters in pairs(config.linting_services) do
-		for _, linter in ipairs(linters) do
-			if not seen[linter] then
-				table.insert(packages, linter)
-				seen[linter] = true
+	for _, servers in pairs(config.linting_services) do
+		for _, server in ipairs(servers) do
+			local pkg = mappings.nvimlint_to_pakcage[server]
+			if pkg and not packages_seen[pkg] then
+				table.insert(packages, pkg)
+				packages_seen[pkg] = true
 			end
 		end
 	end
 
 	-- Add DAP servers
 	for _, server in ipairs(config.dap_servers) do
-		if not seen[server] then
-			table.insert(packages, server)
-			seen[server] = true
+		local pkg = mappings.dap_to_package[server]
+		if pkg and not packages_seen[pkg] then
+			table.insert(packages, pkg)
+			packages_seen[pkg] = true
 		end
 	end
-
 	return packages
 end
 
