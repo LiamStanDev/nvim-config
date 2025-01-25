@@ -92,6 +92,22 @@ config.dap_servers = {
 	"delve", -- go
 }
 
+-- task-runner
+config.tasks = {
+	{ label = "CMake Build", command = "cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug && cmake --build build" },
+	{
+		label = "CMake Re-Build",
+		command = "rm -rf ./build && cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug && cmake --build build",
+	},
+	{
+		label = "CMake Build (release)",
+		command = "cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build",
+	},
+	{
+		label = "CMake Re-Build (release)",
+		command = "rm -rf ./build && cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build",
+	},
+}
 -- -----------------------------------------------------
 -- Others
 -- -----------------------------------------------------

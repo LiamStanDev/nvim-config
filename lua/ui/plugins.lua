@@ -26,7 +26,7 @@ return {
 	-- dashboard
 	{
 		"goolord/alpha-nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = { "echasnovski/mini.icons" },
 		config = require("ui.alpha"),
 	},
 
@@ -53,20 +53,26 @@ return {
 	},
 
 	-- explore
+	-- {
+	-- 	"nvim-neo-tree/neo-tree.nvim",
+	-- 	event = "VeryLazy",
+	-- 	branch = "v3.x",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"nvim-tree/nvim-web-devicons",
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		{
+	-- 			"s1n7ax/nvim-window-picker",
+	-- 			version = "2.*",
+	-- 		},
+	-- 	},
+	-- 	config = require("ui.neotree"),
+	-- },
 	{
-		"nvim-neo-tree/neo-tree.nvim",
-		event = "VeryLazy",
-		branch = "v3.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons",
-			"MunifTanjim/nui.nvim",
-			{
-				"s1n7ax/nvim-window-picker",
-				version = "2.*",
-			},
-		},
-		config = require("ui.neotree"),
+		"stevearc/oil.nvim",
+		config = require("ui.oil"),
+		-- dependencies = { { "echasnovski/mini.icons", opts = {} } },
+		lazy = false,
 	},
 
 	-- status line

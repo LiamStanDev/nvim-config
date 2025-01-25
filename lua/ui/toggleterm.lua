@@ -1,6 +1,6 @@
 return function()
 	require("toggleterm").setup({
-		size = 20,
+		size = 15,
 		direction = "float", -- horizontal: bottom, vertical: right
 		open_mapping = "<A-`>",
 		float_opts = {

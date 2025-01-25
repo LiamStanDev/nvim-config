@@ -28,19 +28,24 @@ return function()
 			"<CMD>nohlsearch<CR>",
 			desc = "No Highlight",
 		},
-		{ "<leader>e", "<CMD>Neotree toggle<CR>", desc = "Explorer" },
-		-- {
-		-- 	"<leader>e",
-		-- 	function()
-		-- 		require("mini.files").open()
-		-- 	end,
-		-- 	desc = "Explorer",
-		-- },
+		-- { "<leader>e", "<CMD>Neotree toggle<CR>", desc = "Explorer" },
+		{
+			"<leader>e",
+			function()
+				require("oil").toggle_float()
+			end,
+			desc = "Explorer",
+		},
 		{ "<leader>;", ":e $MYVIMRC<CR>", desc = "Configuration" },
 		{
 			"<leader>/",
 			"<CMD>DBUIToggle<CR>",
 			desc = "Toggle database client",
+		},
+		{
+			"<leader>\\",
+			"<CMD>ShowTasks<CR>",
+			desc = "Task Runner",
 		},
 
 		-- markdown
