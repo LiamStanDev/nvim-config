@@ -1,5 +1,6 @@
 local M = {}
-M.init = function()
+
+function M.init()
 	-- sign
 	vim.fn.sign_define("DapBreakpoint", {
 		text = "", --"",
@@ -21,18 +22,8 @@ M.init = function()
 	})
 end
 
-M.config = function()
+function M.config()
 	-- local servers = require("core.globals").dap_servers
-
-	-- require("mason-nvim-dap").setup({
-	-- 	ensure_installed = servers,
-	-- 	automatic_installation = true,
-	-- 	-- handlers = {
-	-- 	-- 	function(config)
-	-- 	-- 		require("mason-nvim-dap").default_setup(config)
-	-- 	-- 	end,
-	-- 	-- },
-	-- })
 
 	require("nvim-dap-virtual-text").setup({
 		enabled = true, -- enable this plugin (the default)

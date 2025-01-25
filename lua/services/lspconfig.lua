@@ -1,3 +1,17 @@
+local function on_attach(client, bufnr)
+	local keymap = vim.keymap.set
+
+	vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+
+	if client.name == "omnisharp" then
+		keymap("n", "gd", "<cmd>lua require('omnisharp_extended').lsp_definitions()<cr>")
+	end
+
+	-- remove default formatter
+	-- for rust
+	vim.g.rustfmt_autosave = false
+end
+
 return function()
 	-- -----------------------------------
 	-- ----------- capabilities ----------
@@ -10,25 +24,6 @@ return function()
 		dynamicRegistration = false,
 		lineFoldingOnly = true,
 	}
-
-	-- -----------------------------------
-	-- ----------- attach ----------------
-	-- -----------------------------------
-	local function on_attach(client, bufnr)
-		local keymap = vim.keymap.set
-
-		-- lsp keymapsetting
-		-- nvim v10 (after) feature to show inlay_hint
-		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-
-		if client.name == "omnisharp" then
-			keymap("n", "gd", "<cmd>lua require('omnisharp_extended').lsp_definitions()<cr>")
-		end
-
-		-- remove default formatter
-		-- for rust
-		vim.g.rustfmt_autosave = false
-	end
 
 	-- --------------------------------------
 	-- ------- register lsp service ---------

@@ -1,5 +1,5 @@
 local M = {}
-M.setup = function()
+function M.setup()
 	local colorscheme = require("core.globals").colorscheme
 
 	-- set catppuccin first for bufferline color(can't delete)

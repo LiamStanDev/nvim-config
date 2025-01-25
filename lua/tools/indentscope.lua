@@ -1,6 +1,6 @@
 local M = {}
 
-M.init = function()
+function M.init()
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = {
 			"help",
@@ -25,7 +25,7 @@ M.init = function()
 	})
 end
 
-M.config = function()
+function M.config()
 	require("mini.indentscope").setup({
 		-- symbol = "╎",
 		-- symbol = "│",

@@ -1,6 +1,6 @@
 local M = {}
 
-M.window_setup = function()
+function M.window_setup()
 	local config = require("core.globals")
 	if config.cmp_window_border == "rounded" then
 		local border_opt = {
@@ -30,7 +30,7 @@ M.window_setup = function()
 	}
 end
 
-M.format_colorful = function(entry, item)
+function M.format_colorful(entry, item)
 	local lspkind = require("lspkind").cmp_format({
 		mode = "symbol_text",
 		maxwidth = {

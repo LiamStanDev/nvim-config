@@ -1,13 +1,3 @@
--- old version
--- local function get_plugins_num()
--- 	return #require("plugin-list")
--- 		+ #require("colorschemes")
--- 		+ #require("editor.plugins")
--- 		+ #require("services.plugins")
--- 		+ #require("tools.plugins")
--- 		+ #require("ui.plugins")
--- end
-
 local function get_plugins_num()
 	return #require("lazy").plugins()
 end
