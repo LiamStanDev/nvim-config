@@ -42,12 +42,8 @@ function M.open_task_menu(opts)
 				actions.select_default:replace(function()
 					actions.close(prompt_bufnr)
 					local selection = action_state.get_selected_entry()
-					Terminal:new({
-						display_name = "task-runner",
-						cmd = selection.value.command,
-						close_on_exit = false,
-						direction = "horizontal",
-					}):toggle()
+					local cmd = string.format('TermExec cmd="%s" dir=%s', selection.value.command, vim.fn.getcwd())
+					vim.cmd(cmd)
 				end)
 				map("i", "<ESC>", actions.close)
 				return true
