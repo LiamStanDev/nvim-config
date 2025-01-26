@@ -21,5 +21,8 @@ return function()
 		view_options = {
 			show_hidden = true,
 		},
+		float = {
+			max_width = 0.25,
+		},
 	})
 end
