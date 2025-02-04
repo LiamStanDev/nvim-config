@@ -83,8 +83,7 @@ return {
 	-- code folding
 	{
 		"kevinhwang91/nvim-ufo",
-		config = require("tools.nvim-ufo").config,
-		init = require("tools.nvim-ufo").init,
+		config = require("tools.nvim-ufo"),
 		event = { "BufReadPost" },
 		dependencies = {
 			"kevinhwang91/promise-async",

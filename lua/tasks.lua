@@ -1,14 +1,16 @@
 -- task-runner
 return {
 	cpp = {
+		{ label = "CMake Build", command = "cmake --build build --parallel 4" },
 		{
 			label = "CMake Init (Debug)",
-			command = "cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1",
+			command = "cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
 		},
 		{ label = "CMake Init (Release)", command = "cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Release" },
-		{ label = "CMake Build", command = "cmake --build build" },
 		{ label = "CMake Clean", command = "cmake --build build --target clean" },
+		{ label = "Clang Format Init", command = "clang-format --style=Google -dump-config > .clang-format" },
 		{ label = "Run Tests", command = "cd build && ctest" },
+		{ label = "CMake Install", command = "cmake --build build --parallel 4 --target install" },
 	},
 	python = {
 		{ label = "Run Script", command = "python main.py" },

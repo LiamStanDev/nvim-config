@@ -17,7 +17,7 @@ function M.config()
 			["<C-j>"] = cmp.mapping.select_next_item(),
 			["<C-b>"] = cmp.mapping.scroll_docs(-4),
 			["<C-f>"] = cmp.mapping.scroll_docs(4),
-			["<C-/>"] = cmp.mapping.complete(),
+			["<C-.>"] = cmp.mapping.complete(),
 			["<C-c>"] = cmp.mapping.abort(),
 			["<Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then

@@ -1,7 +1,7 @@
 local M = {}
 
 local function detect_project_type()
-	if vim.fn.glob("CMakeLists.txt") ~= "" then
+	if vim.fn.glob("CMakeLists.txt") or vim.fn.glob("*cpp") or vim.fn.glob("*cc") ~= "" then
 		return "cpp"
 	elseif vim.fn.glob("*.py") ~= "" then
 		return "python"
@@ -17,7 +17,6 @@ function M.open_task_menu(opts)
 	local finders = require("telescope.finders")
 	local actions = require("telescope.actions")
 	local action_state = require("telescope.actions.state")
-	local Terminal = require("toggleterm.terminal").Terminal
 	local generic_sorter = require("telescope.config").values.generic_sorter
 
 	local project_type = detect_project_type() or ""

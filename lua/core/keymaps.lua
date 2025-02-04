@@ -17,8 +17,8 @@ local insert_mode = {
 
 local normal_mode = {
 	-- Quick Curser
-	-- ["<S-l>"] = "$",
-	-- ["<S-h>"] = "^",
+	["<S-l>"] = "$",
+	["<S-h>"] = "^",
 
 	["<C-h>"] = "<C-w>h",
 	["<C-j>"] = "<C-w>j",

@@ -1,9 +1,4 @@
 return function()
-	local keymap = vim.keymap.set
-	keymap("n", "<C-\\>", "<CMD>CopilotChatToggle<CR>")
-	keymap("i", "<C-\\>", "<CMD>CopilotChatToggle<CR>")
-	keymap("v", "<C-\\>", "<CMD>CopilotChatToggle<CR>")
-
 	require("CopilotChat").setup({
 		model = "gpt-4o", -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
 		agent = "copilot", -- Default agent to use, see ':CopilotChatAgents' for available agents (can be specified manually in prompt via @).
@@ -37,8 +32,8 @@ return function()
 				insert = "<C-c>",
 			},
 			reset = {
-				normal = nil,
-				insert = nil,
+				normal = "<C-,>",
+				insert = "<C-,>",
 			},
 			submit_prompt = {
 				normal = "<CR>",

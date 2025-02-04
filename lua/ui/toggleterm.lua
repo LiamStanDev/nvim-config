@@ -2,7 +2,7 @@ return function()
 	require("toggleterm").setup({
 		size = 15,
 		direction = "float", -- horizontal: bottom, vertical: right
-		open_mapping = "<A-`>",
+		open_mapping = "<C-S>",
 		float_opts = {
 			border = "curved",
 			winblend = 0,
