@@ -80,11 +80,17 @@ return function()
 		{
 			mode = { "n", "v" },
 			{ "<leader>g", group = "Git" },
-			{ "<leader>gg", "<CMD>Git<CR>", desc = "Open Git (fugitive)" },
+			{
+				"<leader>gg",
+				function()
+					require("neogit").open()
+				end,
+				desc = "Open Git (fugitive)",
+			},
 			{ "<leader>gG", "<CMD>Lazygit<CR>", desc = "Open Lazygit" },
 			{ "<leader>gp", "<CMD>Gitsigns preview_hunk<CR>", desc = "Open Lazygit" },
 			{ "<leader>gl", "<CMD>lua require 'gitsigns'.blame_line()<CR>", desc = "Blame" },
-			{ "<leader>gd", "<CMD>Gvdiffsplit<CR>", desc = "Git Show Diff (fugitive)" },
+			-- { "<leader>gd", "<CMD>Gvdiffsplit<CR>", desc = "Git Show Diff (fugitive)" },
 			{
 				"<leader>gj",
 				"<CMD>lua require 'gitsigns'.next_hunk({navigation_message = true})<CR>",
@@ -95,13 +101,13 @@ return function()
 				"<CMD>lua require 'gitsigns'.prev_hunk({navigation_message = true})<CR>",
 				desc = "Prev Hunk",
 			},
-			{ "<leader>gL", "<CMD>diffget LOCAL<CR>", desc = "Choose Local (mergetool)" },
-			{ "<leader>gB", "<CMD>diffget BASE<CR>", desc = "Choose Base (mergetool)" },
-			{ "<leader>gR", "<CMD>diffget REMOTE<CR>", desc = "Choose Remote (mergetool)" },
-			{ "<leader>gr", "<CMD>lua require 'gitsigns'.reset_hunk()<CR>", desc = "Reset Hunk (gitsing)" },
-			{ "<leader>gw", "<CMD>lua require 'gitsigns'.stage_hunk()<CR>", desc = "Stage Hunk (gitsign)" },
-			{ "<leader>gR", "<CMD>Gread<CR>", desc = "Git Reset (fugitive)" },
-			{ "<leader>gW", "<CMD>Gwrite<CR>", desc = "Git Add (fugitive)" },
+			-- { "<leader>gL", "<CMD>diffget LOCAL<CR>", desc = "Choose Local (mergetool)" },
+			-- { "<leader>gB", "<CMD>diffget BASE<CR>", desc = "Choose Base (mergetool)" },
+			-- { "<leader>gR", "<CMD>diffget REMOTE<CR>", desc = "Choose Remote (mergetool)" },
+			-- { "<leader>gr", "<CMD>lua require 'gitsigns'.reset_hunk()<CR>", desc = "Reset Hunk (gitsing)" },
+			-- { "<leader>gw", "<CMD>lua require 'gitsigns'.stage_hunk()<CR>", desc = "Stage Hunk (gitsign)" },
+			-- { "<leader>gR", "<CMD>Gread<CR>", desc = "Git Reset (fugitive)" },
+			-- { "<leader>gW", "<CMD>Gwrite<CR>", desc = "Git Add (fugitive)" },
 		},
 
 		-- lsp

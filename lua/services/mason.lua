@@ -12,7 +12,9 @@ return function()
 
 	local config = require("core.globals")
 	local service_identifiers = require("services.utils").get_service_identifiers(config)
+	-- vim.notify(vim.inspect(service_identifiers))
 
+	-- your can manually update and install by MasonToolUpdateSync/MasonToolInstallSync
 	require("mason-tool-installer").setup({
 		ensure_installed = service_identifiers,
 	})

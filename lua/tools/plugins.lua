@@ -169,7 +169,16 @@ return {
 
 	-- git
 	{ "lewis6991/gitsigns.nvim", event = "VeryLazy", config = require("tools.gitsigns") },
-	{ "tpope/vim-fugitive", event = "VeryLazy" },
+	-- { "tpope/vim-fugitive", event = "VeryLazy" },
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		config = require("tools.neogit"),
+	},
 
 	-- markdown
 	{

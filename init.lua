@@ -67,6 +67,7 @@ config.formatter_services = {
 	shell = { "shfmt" },
 	c = { "clang_format" },
 	cpp = { "clang_format" },
+	cmake = { "cmake_format" },
 	-- rust = { "rustfmt" },
 	-- cs = { "csharpier" },
 	sql = { "sqlfmt" },

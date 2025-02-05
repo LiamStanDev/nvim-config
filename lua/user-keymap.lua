@@ -20,16 +20,16 @@ vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
 -- NOTE: not using C-], C-\, and etc for mapping keys because some terminal legacy problem
 -- copilot chat
-keymap({ "n", "i", "v", "t" }, "<A-\\>", "<CMD>CopilotChatToggle<CR>")
+keymap({ "n", "i", "v", "t" }, "<A-]>", "<CMD>CopilotChatToggle<CR>")
 
 -- toggle term
 keymap({ "n", "i", "v", "t" }, "<A-`>", "<CMD>ToggleTerm<CR>")
 
 -- task runner
-keymap({ "n", "i", "v", "t" }, "<A-]>", "<CMD>ShowTasks<CR>")
+keymap({ "n", "i", "v", "t" }, "<A-\\>", "<CMD>ShowTasks<CR>")
 
 -- dbui
-keymap({ "n", "i", "v" }, "<A-[>", "<CMD>DBUIToggle<CR>")
+keymap({ "n", "i", "v" }, "<A-/>", "<CMD>DBUIToggle<CR>")
 
 -- clangd
 keymap({ "n", "i", "v" }, "<A-s>", "<CMD>ClangdSwitchSourceHeader<CR>")
