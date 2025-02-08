@@ -16,6 +16,7 @@ return function()
 			NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
 			TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
 		},
+
 		highlight = {
 			multiline = true, -- enable multine todo comments
 			multiline_pattern = "^>", -- lua pattern to match the next multiline from the start of the matched keyword

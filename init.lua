@@ -98,8 +98,9 @@ config.dap_servers = {
 -- -----------------------------------------------------
 -- set color theme here
 -- config.colorscheme = "onedark"
-config.colorscheme = "catppuccin-mocha"
--- config.colorscheme = "catppuccin"
+-- config.colorscheme = "catppuccin-mocha"
+-- config.colorscheme = "gruvbox"
+config.colorscheme = "catppuccin"
 
 -- whether to see navigator bar in the top
 config.navigator_on = true
