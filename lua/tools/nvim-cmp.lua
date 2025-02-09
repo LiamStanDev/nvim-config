@@ -12,6 +12,7 @@ function M.config()
 				require("luasnip").lsp_expand(args.body)
 			end,
 		},
+		-- preselect = cmp.PreselectMode.None,
 		mapping = cmp.mapping.preset.insert({
 			["<C-k>"] = cmp.mapping.select_prev_item(),
 			["<C-j>"] = cmp.mapping.select_next_item(),
@@ -21,24 +22,24 @@ function M.config()
 			["<C-c>"] = cmp.mapping.abort(),
 			["<Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
-					if luasnip.expandable() then
-						luasnip.expand()
-					else
-						cmp.confirm({ select = true })
-					end
-				elseif luasnip.locally_jumpable(1) then
-					luasnip.jump(1)
+					-- if luasnip.locally_jumpable(1) then
+					-- 	luasnip.jump(1)
+					-- else
+					cmp.confirm({ select = true })
+					-- end
+					-- elseif luasnip.locally_jumpable(1) then
+					-- 	luasnip.jump(1)
 				else
 					fallback()
 				end
 			end, { "i", "s" }),
-			["<S-Tab>"] = cmp.mapping(function(fallback)
-				if luasnip.locally_jumpable(-1) then
-					luasnip.jump(-1)
-				else
-					fallback()
-				end
-			end, { "i", "s" }),
+			-- ["<S-Tab>"] = cmp.mapping(function(fallback)
+			-- 	if luasnip.locally_jumpable(-1) then
+			-- 		luasnip.jump(-1)
+			-- 	else
+			-- 		fallback()
+			-- 	end
+			-- end, { "i", "s" }),
 		}),
 		formatting = {
 			fields = { "kind", "abbr", "menu" },
