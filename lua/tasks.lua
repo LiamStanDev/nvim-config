@@ -1,6 +1,6 @@
 -- task-runner
 return {
-	cpp = {
+	cpp_cmake = {
 		{ label = "CMake Run", command = "cmake --build build --parallel 4 --target run" },
 		{
 			label = "CMake Init (Debug)",
@@ -16,8 +16,12 @@ return {
 		{ label = "Run Tests", command = "cd build && ctest" },
 		{ label = "CMake Install", command = "cmake --build build --parallel 4 --target install" },
 	},
+	cpp = {
+		{ label = "Build Single File", command = "g++ -o a.out -std=c++23 " },
+		{ label = "Run Single File", command = "./a.out" },
+	},
 	python = {
-		{ label = "Run Script", command = "python main.py" },
+		{ label = "Run Script", command = "python " },
 		{ label = "Run Tests", command = "pytest" },
 	},
 	rust = {

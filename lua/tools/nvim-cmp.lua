@@ -93,6 +93,48 @@ function M.config()
 			{ name = "buffer" },
 		},
 	})
+	cmp.setup({
+		enabled = function()
+			return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+		end,
+	})
+	cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+		sources = {
+			{ name = "dap" },
+		},
+	})
+
+	cmp.setup.cmdline("/", {
+		mapping = cmp.mapping.preset.cmdline(),
+		sources = {
+			{ name = "buffer" },
+		},
+	})
+	cmp.setup.cmdline(":", {
+		mapping = cmp.mapping.preset.cmdline(),
+		sources = cmp.config.sources({
+			{ name = "path" },
+			{ name = "fuzzy_path" },
+		}, {
+			{
+				name = "cmdline",
+				option = {
+					ignore_cmds = { "Man", "!" },
+				},
+			},
+		}),
+	})
+	cmp.setup.cmdline("@", {
+		sources = cmp.config.sources({
+			{
+				name = "cmdline-prompt",
+				option = {
+					-- excludes = { "file", "dir" }, -- complete with 'hrsh7th/cmp-path' instead of 'cmdline-prompt'
+				},
+			},
+			{ name = "path" },
+		}),
+	})
 end
 
 return M

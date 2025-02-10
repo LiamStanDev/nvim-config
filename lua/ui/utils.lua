@@ -1,12 +1,30 @@
 local M = {}
 
 local function detect_project_type()
-	if vim.fn.glob("CMakeLists.txt") or vim.fn.glob("*cpp") or vim.fn.glob("*cc") ~= "" then
+	local filetype = vim.bo.filetype
+	if vim.fn.filereadable("CMakeLists.txt") == 1 then
+		return "cpp_cmake"
+	elseif filetype == "cpp" then
 		return "cpp"
-	elseif vim.fn.glob("*.py") ~= "" then
+	elseif
+		vim.fn.filereadable("pyproject.toml") == 1
+		or vim.fn.filereadable("setup.py") == 1
+		or vim.fn.filereadable("requirements.txt") == 1
+		or filetype == "python"
+	then
 		return "python"
-	elseif vim.fn.glob("Cargo.toml") ~= "" then
+	elseif
+		vim.fn.filereadable("Cargo.toml") == 1
+		or vim.fn.filereadable("src/main.rs") == 1
+		or vim.fn.filereadable("src/lib.rs") == 1
+	then
 		return "rust"
+	elseif vim.fn.filereadable("package.json") == 1 then
+		return "javascript"
+	elseif vim.fn.filereadable("go.mod") == 1 or filetype == "go" then
+		return "go"
+	elseif vim.fn.filereadable("pom.xml") == 1 or vim.fn.filereadable("build.gradle") == 1 or filetype == "java" then
+		return "java"
 	else
 		return nil
 	end
@@ -20,6 +38,7 @@ function M.open_task_menu(opts)
 	local generic_sorter = require("telescope.config").values.generic_sorter
 
 	local project_type = detect_project_type() or ""
+	vim.notify(project_type)
 	local tasks = require("tasks")[project_type] or {}
 
 	opts = opts or {}
@@ -41,7 +60,8 @@ function M.open_task_menu(opts)
 				actions.select_default:replace(function()
 					actions.close(prompt_bufnr)
 					local selection = action_state.get_selected_entry()
-					local cmd = string.format('TermExec cmd="; %s" dir=%s', selection.value.command, vim.fn.getcwd())
+					local user_cmd = vim.fn.input("command: ", selection.value.command)
+					local cmd = string.format('TermExec cmd="%s" dir=%s', user_cmd, vim.fn.getcwd())
 					vim.cmd(cmd)
 				end)
 				map("i", "<ESC>", actions.close)
