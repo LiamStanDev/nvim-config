@@ -1,8 +1,61 @@
 local M = {}
 
+local function cmdline_mapping()
+	local cmp = require("cmp")
+	-- ref: https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/mapping.lua
+	return cmp.mapping.preset.cmdline({
+		["<TAB>"] = {
+			c = function(fallback)
+				if cmp.visible() then
+					cmp.confirm({ select = true })
+				else
+					fallback()
+				end
+			end,
+		},
+		["<C-j>"] = {
+			c = function(fallback)
+				if cmp.visible() then
+					cmp.select_next_item()
+				else
+					fallback()
+				end
+			end,
+		},
+		["<C-k>"] = {
+			c = function(fallback)
+				if cmp.visible() then
+					cmp.select_prev_item()
+				else
+					fallback()
+				end
+			end,
+		},
+	})
+end
+
+local function insert_mapping()
+	local cmp = require("cmp")
+	-- ref: https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/mapping.lua
+	return cmp.mapping.preset.insert({
+		["<C-k>"] = cmp.mapping.select_prev_item(),
+		["<C-j>"] = cmp.mapping.select_next_item(),
+		["<C-b>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-.>"] = cmp.mapping.complete(),
+		["<C-c>"] = cmp.mapping.abort(),
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.confirm({ select = true })
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+	})
+end
+
 function M.config()
 	local cmp = require("cmp")
-	local luasnip = require("luasnip")
 	local utils = require("tools.utils")
 
 	cmp.setup({
@@ -13,34 +66,7 @@ function M.config()
 			end,
 		},
 		-- preselect = cmp.PreselectMode.None,
-		mapping = cmp.mapping.preset.insert({
-			["<C-k>"] = cmp.mapping.select_prev_item(),
-			["<C-j>"] = cmp.mapping.select_next_item(),
-			["<C-b>"] = cmp.mapping.scroll_docs(-4),
-			["<C-f>"] = cmp.mapping.scroll_docs(4),
-			["<C-.>"] = cmp.mapping.complete(),
-			["<C-c>"] = cmp.mapping.abort(),
-			["<Tab>"] = cmp.mapping(function(fallback)
-				if cmp.visible() then
-					-- if luasnip.locally_jumpable(1) then
-					-- 	luasnip.jump(1)
-					-- else
-					cmp.confirm({ select = true })
-					-- end
-					-- elseif luasnip.locally_jumpable(1) then
-					-- 	luasnip.jump(1)
-				else
-					fallback()
-				end
-			end, { "i", "s" }),
-			-- ["<S-Tab>"] = cmp.mapping(function(fallback)
-			-- 	if luasnip.locally_jumpable(-1) then
-			-- 		luasnip.jump(-1)
-			-- 	else
-			-- 		fallback()
-			-- 	end
-			-- end, { "i", "s" }),
-		}),
+		mapping = insert_mapping(),
 		formatting = {
 			fields = { "kind", "abbr", "menu" },
 			format = utils.format_colorful,
@@ -62,10 +88,6 @@ function M.config()
 			completion = utils.window_setup().completion,
 			documentation = utils.window_setup().documentation,
 		},
-		-- experimental = {
-		-- 	ghost_text = false,
-		-- 	native_menu = false,
-		-- },
 		sorting = {
 			priority_weight = 2,
 			comparators = {
@@ -93,6 +115,7 @@ function M.config()
 			{ name = "buffer" },
 		},
 	})
+
 	cmp.setup({
 		enabled = function()
 			return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
@@ -105,33 +128,23 @@ function M.config()
 	})
 
 	cmp.setup.cmdline("/", {
-		mapping = cmp.mapping.preset.cmdline(),
+		mapping = cmdline_mapping(),
 		sources = {
 			{ name = "buffer" },
 		},
 	})
+
 	cmp.setup.cmdline(":", {
-		mapping = cmp.mapping.preset.cmdline(),
+		mapping = cmdline_mapping(),
 		sources = cmp.config.sources({
 			{ name = "path" },
 			{ name = "fuzzy_path" },
-		}, {
-			{
-				name = "cmdline",
-				option = {
-					ignore_cmds = { "Man", "!" },
-				},
-			},
 		}),
 	})
 	cmp.setup.cmdline("@", {
+		mapping = cmdline_mapping(),
 		sources = cmp.config.sources({
-			{
-				name = "cmdline-prompt",
-				option = {
-					-- excludes = { "file", "dir" }, -- complete with 'hrsh7th/cmp-path' instead of 'cmdline-prompt'
-				},
-			},
+			{ name = "cmdline-prompt" },
 			{ name = "path" },
 		}),
 	})
