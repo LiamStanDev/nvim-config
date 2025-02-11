@@ -13,6 +13,9 @@ keymap("n", "gk", "<CMD>Lspsaga diagnostic_jump_prev<CR>")
 keymap("n", "gj", "<CMD>Lspsaga diagnostic_jump_next<CR>")
 keymap("n", "gr", "<CMD>Lspsaga rename ++project<CR>")
 keymap("n", "go", "<CMD>Trouble symbols toggle<CR>")
+keymap("n", "gi", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end)
 
 -- ufo
 vim.keymap.set("n", "zR", require("ufo").openAllFolds)
