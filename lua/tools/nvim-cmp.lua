@@ -32,6 +32,7 @@ local function cmdline_mapping()
 			end,
 		},
 	})
+	-- return cmp.mapping.preset.cmdline()
 end
 
 local function insert_mapping()
@@ -129,6 +130,7 @@ function M.config()
 
 	cmp.setup.cmdline("/", {
 		mapping = cmdline_mapping(),
+		-- mappings = cmp.mapping.preset.cmdline(),
 		sources = {
 			{ name = "buffer" },
 		},
@@ -136,18 +138,20 @@ function M.config()
 
 	cmp.setup.cmdline(":", {
 		mapping = cmdline_mapping(),
+		-- mappings = cmp.mapping.preset.cmdline(),
 		sources = cmp.config.sources({
-			{ name = "path" },
-			{ name = "fuzzy_path" },
-		}),
-	})
-	cmp.setup.cmdline("@", {
-		mapping = cmdline_mapping(),
-		sources = cmp.config.sources({
-			{ name = "cmdline-prompt" },
+			{ name = "cmdline" },
 			{ name = "path" },
 		}),
 	})
+	-- cmp.setup.cmdline("@", {
+	-- 	-- mapping = cmdline_mapping(),
+	-- 	-- mappings = cmp.mapping.preset.cmdline(),
+	-- 	sources = cmp.config.sources({
+	-- 		{ name = "cmdline-prompt" },
+	-- 		{ name = "path" },
+	-- 	}),
+	-- })
 end
 
 return M
