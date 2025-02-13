@@ -10,7 +10,7 @@ return {
 			label = "Init (Release)",
 			command = "rm -f build/CMakeCache.txt; cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Release",
 		},
-		{ label = "Run Tests", command = "cd build && ctest" },
+		{ label = "Run Tests", command = "cmake --build build --parallel 4 && (cd build && ctest; cd ..)" },
 		{ label = "Build", command = "cmake --build build --parallel 4" },
 		{ label = "Clean", command = "cmake --build build --target clean" },
 		{ label = "CMake Install", command = "cmake --build build --parallel 4 --target install" },
