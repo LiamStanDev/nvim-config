@@ -22,7 +22,7 @@ M.get_cs_dll = function()
 end
 
 M.get_file = function()
-	return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+	return vim.fn.input("Path to executable: ", "./", "file")
 end
 
 M.get_rust_bin = function()

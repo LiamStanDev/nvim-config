@@ -144,14 +144,14 @@ function M.config()
 			{ name = "path" },
 		}),
 	})
-	-- cmp.setup.cmdline("@", {
-	-- 	-- mapping = cmdline_mapping(),
-	-- 	-- mappings = cmp.mapping.preset.cmdline(),
-	-- 	sources = cmp.config.sources({
-	-- 		{ name = "cmdline-prompt" },
-	-- 		{ name = "path" },
-	-- 	}),
-	-- })
+	cmp.setup.cmdline("@", {
+		mapping = cmdline_mapping(),
+		-- mappings = cmp.mapping.preset.cmdline(),
+		sources = cmp.config.sources({
+			{ name = "cmdline-prompt" },
+			{ name = "path" },
+		}),
+	})
 end
 
 return M

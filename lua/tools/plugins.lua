@@ -36,7 +36,7 @@ return {
 			"hrsh7th/cmp-nvim-lua",
 			"rcarriga/cmp-dap",
 			"onsails/lspkind.nvim",
-			-- "teramako/cmp-cmdline-prompt.nvim",
+			"teramako/cmp-cmdline-prompt.nvim",
 			{
 				"L3MON4D3/LuaSnip",
 				version = "v2.*",

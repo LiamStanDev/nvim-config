@@ -1,9 +1,9 @@
 return function()
 	require("CopilotChat").setup({
-		model = "gpt-4o", -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
-		agent = "copilot", -- Default agent to use, see ':CopilotChatAgents' for available agents (can be specified manually in prompt via @).
-		context = nil, -- Default context or array of contexts to use (can be specified manually in prompt via #).
-
+		-- model = "gpt-4o", -- Default model to use, see ':CopilotChatModels' for available models (can be specified manually in prompt via $).
+		-- agent = "copilot", -- Default agent to use, see ':CopilotChatAgents' for available agents (can be specified manually in prompt via @).
+		-- context = nil, -- Default context or array of contexts to use (can be specified manually in prompt via #).
+		--
 		window = {
 			layout = "horizontal", -- 'vertical', 'horizontal', 'float', 'replace'
 			width = 0.5, -- fractional width of parent, or absolute width in columns when > 1
@@ -18,57 +18,61 @@ return function()
 			zindex = 1, -- determines if window is on top or below other floating windows
 		},
 
+		sticky = {
+			"#files:full",
+		},
+
 		-- for render markdown
 		highlight_headers = false,
 		separator = "---",
 		error_header = "> [!ERROR] Error",
 
-		mappings = {
-			complete = {
-				insert = "<Tab>",
-			},
-			close = {
-				normal = "q",
-				insert = "<C-c>",
-			},
-			reset = {
-				normal = "<C-,>",
-				insert = "<C-,>",
-			},
-			submit_prompt = {
-				normal = "<CR>",
-				insert = "<C-s>",
-			},
-			toggle_sticky = {
-				detail = "Makes line under cursor sticky or deletes sticky line.",
-				normal = "gr",
-			},
-			accept_diff = {
-				normal = "<C-y>",
-				insert = "<C-y>",
-			},
-			jump_to_diff = {
-				normal = "gj",
-			},
-			quickfix_diffs = {
-				normal = "gq",
-			},
-			yank_diff = {
-				normal = "gy",
-				register = '"',
-			},
-			show_diff = {
-				normal = "gd",
-			},
-			show_info = {
-				normal = "gi",
-			},
-			show_context = {
-				normal = "gc",
-			},
-			show_help = {
-				normal = "gh",
-			},
-		},
+		-- mappings = {
+		-- 	complete = {
+		-- 		insert = "<Tab>",
+		-- 	},
+		-- 	close = {
+		-- 		normal = "q",
+		-- 		insert = "<C-c>",
+		-- 	},
+		-- 	reset = {
+		-- 		normal = "<C-,>",
+		-- 		insert = "<C-,>",
+		-- 	},
+		-- 	submit_prompt = {
+		-- 		normal = "<CR>",
+		-- 		insert = "<C-s>",
+		-- 	},
+		-- 	toggle_sticky = {
+		-- 		detail = "Makes line under cursor sticky or deletes sticky line.",
+		-- 		normal = "gr",
+		-- 	},
+		-- 	accept_diff = {
+		-- 		normal = "<C-y>",
+		-- 		insert = "<C-y>",
+		-- 	},
+		-- 	jump_to_diff = {
+		-- 		normal = "gj",
+		-- 	},
+		-- 	quickfix_diffs = {
+		-- 		normal = "gq",
+		-- 	},
+		-- 	yank_diff = {
+		-- 		normal = "gy",
+		-- 		register = '"',
+		-- 	},
+		-- 	show_diff = {
+		-- 		normal = "gd",
+		-- 	},
+		-- 	show_info = {
+		-- 		normal = "gi",
+		-- 	},
+		-- 	show_context = {
+		-- 		normal = "gc",
+		-- 	},
+		-- 	show_help = {
+		-- 		normal = "gh",
+		-- 	},
+		-- },
 	})
 end
