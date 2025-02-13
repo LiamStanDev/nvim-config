@@ -18,11 +18,21 @@ return function()
 			["g."] = { "actions.toggle_hidden", mode = "n" },
 			["g\\"] = { "actions.toggle_trash", mode = "n" },
 		},
+		skip_confirm_for_simple_edits = true,
+		-- watch_for_changes = true,
 		view_options = {
 			show_hidden = true,
+			-- 	sort = {
+			-- 		-- sort order can be "asc" or "desc"
+			-- 		-- see :help oil-columns to see which columns are sortable
+			-- 		{ "type", "asc" },
+			-- 		{ "name", "asc" },
+			-- 	},
 		},
-		-- float = {
-		-- 	max_width = 0.5,
-		-- },
+
+		float = {
+			-- padding = 5,
+			border = "rounded",
+		},
 	})
 end
