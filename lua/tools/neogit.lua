@@ -1,6 +1,6 @@
 return function()
 	require("neogit").setup({
-		kind = "split",
+		kind = "floating",
 		use_default_keymaps = false,
 		mappings = {
 
