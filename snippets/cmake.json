@@ -76,7 +76,7 @@
       "    run",
       "    DEPENDS ${6:main}",
       "    COMMAND $<TARGET_FILE:${5:main}>",
-      "    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}",
+      "    WORKING_DIRECTORY \\${CMAKE_BINARY_DIR}",
       ")"
     ],
     "description": "A template for setting up a top level exe CMake."
