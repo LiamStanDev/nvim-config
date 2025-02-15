@@ -1,10 +1,28 @@
 local function on_attach(client, bufnr)
-	local keymap = vim.keymap.set
-
 	vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+
+	local keymap = vim.keymap.set
+	local bufopts = { noremap = true, silent = true, buffer = bufnr }
+	keymap("n", "ga", "<CMD>Lspsaga code_action<cr>", bufopts)
+	keymap("n", "gD", "<CMD>Lspsaga peek_definition<CR>", bufopts)
+	keymap("n", "gd", "<CMD>Lspsaga goto_definition<CR>", bufopts) -- Use <C-t> to jump back
+	keymap("n", "gf", "<CMD>Lspsaga lsp_finder<CR>", bufopts)
+	keymap("n", "gT", "<CMD>Lspsaga peek_type_definition<CR>", bufopts)
+	keymap("n", "gt", "<CMD>Lspsaga goto_type_definition<CR>", bufopts)
+	keymap("n", "gl", "<CMD>Lspsaga show_cursor_diagnostics<CR>", bufopts)
+	keymap("n", "gb", "<CMD>Lspsaga show_buf_diagnostics<CR>", bufopts)
+	keymap("n", "gh", "<CMD>Lspsaga hover_doc<CR>", bufopts)
+	keymap("n", "gk", "<CMD>Lspsaga diagnostic_jump_prev<CR>", bufopts)
+	keymap("n", "gj", "<CMD>Lspsaga diagnostic_jump_next<CR>", bufopts)
+	keymap("n", "gr", "<CMD>Lspsaga rename ++project<CR>", bufopts)
+	keymap("n", "go", "<CMD>Trouble symbols toggle<CR>", bufopts)
+	keymap("n", "gi", vim.lsp.buf.implementation, bufopts)
 
 	if client.name == "omnisharp" then
 		keymap("n", "gd", "<cmd>lua require('omnisharp_extended').lsp_definitions()<cr>")
+	end
+	if client.name == "clangd" then
+		client.server_capabilities.signatureHelpProvider = false
 	end
 
 	-- remove default formatter

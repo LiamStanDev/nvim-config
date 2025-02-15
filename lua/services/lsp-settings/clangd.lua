@@ -9,6 +9,7 @@ return {
 		"--header-insertion-decorators", -- show header insert in completion
 		"--function-arg-placeholders",
 		"--fallback-style=Google",
+		"--offset-encoding=utf-16",
 	},
 	filetypes = { "c", "cc", "cpp", "objc", "objcpp", "cuda" },
 }
