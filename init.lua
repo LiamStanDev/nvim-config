@@ -64,7 +64,7 @@ config.formatter_services = {
 	json = { "prettierd", "prettier", stop_after_first = true },
 	bash = { "shfmt" },
 	zsh = { "shfmt" },
-	shell = { "shfmt" },
+	sh = { "shfmt" },
 	c = { "clang_format" },
 	cpp = { "clang_format" },
 	cmake = { "gersemi" },
