@@ -1,23 +1,22 @@
 -- task-runner
 return {
 	cpp_cmake = {
+		{
+			label = "Config",
+			command = "icpp config debug",
+		},
+		{
+			label = "Config (Release)",
+			command = "icpp config release",
+		},
+		{ label = "Run Tests", command = "icpp test" },
+		{ label = "Build", command = "icpp build" },
+		{ label = "CMake Install", command = "icpp install" },
 		{ label = "Run", command = "cmake --build build --parallel 4 --target run" },
-		{
-			label = "Init",
-			command = "clang-format --style=Google -dump-config > .clang-format; rm -f build/CMakeCache.txt; cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
-		},
-		{
-			label = "Init (Release)",
-			command = "rm -f build/CMakeCache.txt; cmake -G Ninja -B build -DCMAKE_BUILD_TYPE=Release",
-		},
-		{ label = "Run Tests", command = "cmake --build build --parallel 4 && (cd build && ctest; cd ..)" },
-		{ label = "Build", command = "cmake --build build --parallel 4" },
-		{ label = "Clean", command = "cmake --build build --target clean" },
-		{ label = "CMake Install", command = "cmake --build build --parallel 4 --target install" },
 	},
 	cpp = {
-		{ label = "Build Single File", command = "g++ -o a.out -std=c++23 " },
-		{ label = "Run Single File", command = "./a.out" },
+		{ label = "Build Single File", command = "g++ -o /tmp/a.out -std=c++23 " },
+		{ label = "Run Single File", command = "/tmp/a.out" },
 		{ label = "Clang Format Init", command = "clang-format --style=Google -dump-config > .clang-format" },
 	},
 	python = {
