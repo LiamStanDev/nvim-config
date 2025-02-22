@@ -19,7 +19,8 @@ return function()
 	dashboard.section.buttons.val = {
 		dashboard.button("f", "  Find File", "<CMD>Telescope find_files<CR>"),
 		-- dashboard.button("e", "󰙅  Explorer", "<cmd>ene<CR><cmd>Neotree toggle<CR>"),
-		dashboard.button("e", "󰙅  Explorer", "<CMD>lua require('oil').toggle_float()<CR>"),
+		-- dashboard.button("e", "󰙅  Explorer", "<CMD>lua require('oil').toggle_float()<CR>"),
+		dashboard.button("e", "󰙅  Explorer", "<CMD>lua MiniFiles.open()<CR>"),
 		dashboard.button("p", "  Projects ", "<CMD>Telescope project<CR>"),
 		dashboard.button("r", "  Recent files", ":Telescope oldfiles <CR>"),
 		dashboard.button("t", "󰇉  Find Text", "<CMD>Telescope live_grep<CR>"),

@@ -128,8 +128,6 @@ return {
 		end,
 	},
 
-	{ "famiu/bufdelete.nvim", event = "VeryLazy" },
-
 	-- todo comment
 	{
 		"folke/todo-comments.nvim",
@@ -204,6 +202,9 @@ return {
 			})
 		end,
 	},
+
+	-- bookmark
+	{ "tomasky/bookmarks.nvim", event = "VeryLazy", config = require("tools.bookmark") },
 
 	-- remote
 	{

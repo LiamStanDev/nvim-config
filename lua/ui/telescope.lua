@@ -90,6 +90,7 @@ return function()
 		},
 	})
 	local themes = require("telescope.themes")
+
 	vim.api.nvim_create_user_command("ShowTasks", function()
 		require("ui.utils").open_task_menu(themes.get_dropdown({}))
 	end, { nargs = 0 })

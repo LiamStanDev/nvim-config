@@ -68,18 +68,19 @@ return {
 	-- 	},
 	-- 	config = require("ui.neotree"),
 	-- },
-	{
-		"stevearc/oil.nvim",
-		config = require("ui.oil"),
-		-- dependencies = { { "echasnovski/mini.icons", opts = {} } },
-		lazy = false,
-	},
+	-- {
+	-- 	"stevearc/oil.nvim",
+	-- 	config = require("ui.oil"),
+	-- 	-- dependencies = { { "echasnovski/mini.icons", opts = {} } },
+	-- 	lazy = false,
+	-- },
+	{ "echasnovski/mini.files", version = false, config = require("ui.mini-files") },
 
 	-- status line
 	{ "nvim-lualine/lualine.nvim", event = "VeryLazy", config = require("ui.lualine") },
 
 	-- buffer tab
-	{ "akinsho/bufferline.nvim", config = require("ui.bufferline") },
+	-- { "akinsho/bufferline.nvim", config = require("ui.bufferline") },
 
 	-- for select and input ui
 	{

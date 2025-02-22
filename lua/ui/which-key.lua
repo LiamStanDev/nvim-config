@@ -29,10 +29,21 @@ return function()
 			desc = "No Highlight",
 		},
 		-- { "<leader>e", "<CMD>Neotree toggle<CR>", desc = "Explorer" },
+		-- {
+		-- 	"<leader>e",
+		-- 	function()
+		-- 		require("oil").toggle_float()
+		-- 	end,
+		-- 	desc = "Explorer",
+		-- },
 		{
 			"<leader>e",
 			function()
-				require("oil").toggle_float()
+				if MiniFiles.get_explorer_state() then
+					MiniFiles.close()
+				else
+					MiniFiles.open()
+				end
 			end,
 			desc = "Explorer",
 		},
@@ -121,9 +132,10 @@ return function()
 		{ "<leader>sn", "<CMD>Telescope notify<CR>", desc = "Notify History" },
 		{ "<leader>sc", "<CMD>Telescope colorscheme<CR>", desc = "Colorscheme" },
 		{ "<leader>sr", "<CMD>Telescope oldfiles<CR>", desc = "Open Recent File" },
-		{ "<leader>sm", "<CMD>Telescope man_pages<CR>", desc = "Man Pages" },
+		{ "<leader>sm", "<CMD>Telescope bookmarks list<CR>", desc = "Open Book Marks" }, -- show marked file list in quickfix window
+		{ "<leader>sb", "<CMD>Telescope buffers<CR>", desc = "Search Buffers" },
+		-- { "<leader>sm", "<CMD>Telescope man_pages<CR>", desc = "Man Pages" },
 		-- { "<leader>sh", "<CMD>Telescope help_tags<CR>", desc = "Find Help" },
-		-- { "<leader>sb", "<CMD>Telescope buffers<CR>", desc = "Search Buffers" },
 		-- { "<leader>sH", "<CMD>Telescope highlights<CR>", desc = "Find highlight groups" },
 		-- { "<leader>sC", "<CMD>Telescope commands<CR>", desc = "Commands" },
 
