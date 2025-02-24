@@ -62,9 +62,8 @@ return function()
 		pattern = "MiniFilesBufferCreate",
 		callback = function(args)
 			local buf_id = args.data.buf_id
-			map_split(buf_id, "<C-j>", "belowright horizontal")
-			map_split(buf_id, "<C-l>", "belowright vertical")
-			vim.keymap.set("n", "gy", yank_path, { buffer = buf_id, desc = "Yank path" })
+			map_split(buf_id, "gs", "belowright horizontal")
+			map_split(buf_id, "gv", "belowright vertical")
 			vim.keymap.set("n", "gy", yank_path, { buffer = buf_id, desc = "Yank path" })
 			vim.keymap.set("n", "_", set_cwd, { buffer = buf_id, desc = "Set cwd" })
 		end,

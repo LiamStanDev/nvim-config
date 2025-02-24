@@ -35,10 +35,10 @@ return function()
 		-- 		normal = "q",
 		-- 		insert = "<C-c>",
 		-- 	},
-		-- 	reset = {
-		-- 		normal = "<C-,>",
-		-- 		insert = "<C-,>",
-		-- 	},
+		reset = {
+			normal = "<C-,>",
+			insert = "<C-,>",
+		},
 		-- 	submit_prompt = {
 		-- 		normal = "<CR>",
 		-- 		insert = "<C-s>",
