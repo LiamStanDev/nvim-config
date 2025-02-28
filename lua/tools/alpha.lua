@@ -9,7 +9,7 @@ return function()
 		return
 	end
 	local logo_name = require("core.globals").dashboard_logo
-	local logos = require("ui.style.header")
+	local logos = require("tools.style.header")
 	if logos[logo_name] == nil then
 		logo_name = "LiamVimVer3"
 	end

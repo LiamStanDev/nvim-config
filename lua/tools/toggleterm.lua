@@ -35,4 +35,7 @@ return function()
 	end
 
 	vim.api.nvim_create_user_command("Lazygit", _LAZYGIT_TOGGLE, {})
+
+	local keymap = vim.keymap.set
+	keymap({ "n", "i", "v", "t" }, "<A-`>", "<CMD>ToggleTerm<CR>")
 end

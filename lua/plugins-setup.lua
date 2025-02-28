@@ -19,10 +19,9 @@ require("lazy").setup({
 		require("colorschemes"),
 		require("services.plugins"),
 		require("tools.plugins"),
-		require("ui.plugins"),
 		require("plugin-list"),
 	},
 	-- checker = { enabled = true },
 	rocks = { enabled = false },
 })
-require("ui.colorscheme").setup()
+require("tools.colorscheme").setup()

@@ -125,4 +125,3 @@ config.filter_files = {
 
 -- setup all plugin
 require("plugins-setup")
-require("user-keymap")

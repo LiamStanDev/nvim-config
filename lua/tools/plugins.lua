@@ -1,14 +1,11 @@
 return {
-	-- fcitx
-	-- { "h-hg/fcitx.nvim", event = "InsertEnter" },
-
-	-- auto autopairs
+	-- autopairs
 	{ "windwp/nvim-autopairs", event = "InsertEnter", config = require("tools.autopairs") },
 
 	-- comment
 	{ "numToStr/Comment.nvim", event = { "BufNewFile", "BufReadPre" }, config = require("tools.comment") },
 
-	-- indnet line
+	-- indnet
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
@@ -43,7 +40,6 @@ return {
 				build = "make install_jsregexp",
 				config = require("tools.luasnippet"),
 			},
-			-- { "tzachar/cmp-fuzzy-path", dependencies = { "tzachar/fuzzy.nvim" } },
 		},
 		config = require("tools.nvim-cmp").config,
 	},
@@ -54,34 +50,31 @@ return {
 		cmd = "Copilot",
 		event = "InsertEnter",
 		config = require("tools.copilot"),
-	},
-	{
-		"zbirenbaum/copilot-cmp",
-		config = function()
-			require("copilot_cmp").setup()
-		end,
+		dependencies = {
+			{
+				"zbirenbaum/copilot-cmp",
+				config = function()
+					require("copilot_cmp").setup()
+				end,
+			},
+		},
 	},
 
 	-- treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
-		version = false, -- last release is way too old and doesn't work on Windows
+		version = false, -- last release
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
 		config = require("tools.treesitter"),
 		dependencies = {
 			{
-
 				"windwp/nvim-ts-autotag",
 				config = require("tools.autotag"),
 			},
 			"nvim-treesitter/nvim-treesitter-textobjects",
-			"IndianBoy42/tree-sitter-just",
 		},
 	},
-
-	-- navigator with tmux
-	-- "christoomey/vim-tmux-navigator",
 
 	-- code folding
 	{
@@ -118,15 +111,6 @@ return {
 			require("nvim-surround").setup()
 		end,
 	},
-	{
-		"s1n7ax/nvim-window-picker",
-		name = "window-picker",
-		event = "VeryLazy",
-		version = "2.*",
-		config = function()
-			require("window-picker").setup()
-		end,
-	},
 
 	-- todo comment
 	{
@@ -135,21 +119,12 @@ return {
 		opts = require("tools.todo-comment"),
 	},
 
-	-- rust
-	{
-		"rust-lang/rust.vim",
-		ft = "rust",
-		init = function()
-			vim.g.rustfmt_autosave = 1
-		end,
-	},
-
 	--color show
 	{
 		"NvChad/nvim-colorizer.lua", -- integrated with tailwind
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
-			require("ui.colorizer")
+			require("tools.colorizer")
 		end,
 	},
 
@@ -206,15 +181,78 @@ return {
 	-- bookmark
 	{ "tomasky/bookmarks.nvim", event = "VeryLazy", config = require("tools.bookmark") },
 
-	-- remote
+	-- keymap ui
 	{
-		"amitds1997/remote-nvim.nvim",
-		version = "*", -- Pin to GitHub releases
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		config = require("tools.which-key"),
 		dependencies = {
-			"nvim-lua/plenary.nvim", -- For standard functions
-			"MunifTanjim/nui.nvim", -- To build the plugin UI
-			"nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
+			{ "echasnovski/mini.icons", version = false },
 		},
-		config = true,
+	},
+
+	-- telescope
+	{
+		"nvim-telescope/telescope.nvim",
+		branch = "0.1.x",
+		event = "VeryLazy",
+		config = require("tools.telescope"),
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+
+	-- dashboard
+	{
+		"goolord/alpha-nvim",
+		dependencies = { "echasnovski/mini.icons" },
+		config = require("tools.alpha"),
+	},
+
+	-- diagnostic navigation
+	{
+		"folke/trouble.nvim",
+		opts = {},
+		cmd = "Trouble",
+	},
+
+	{ "echasnovski/mini.files", version = false, config = require("tools.mini-files") },
+
+	-- status line
+	{ "nvim-lualine/lualine.nvim", event = "VeryLazy", config = require("tools.lualine") },
+
+	-- for select and input ui
+	{
+		"stevearc/dressing.nvim", -- for input, and select ui
+		config = require("tools.dressing"),
+	},
+
+	-- messages, cmdline and the popupmenu
+	{
+		"folke/noice.nvim", -- for command line pop window and nottify
+		event = "VeryLazy",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			{
+				"rcarriga/nvim-notify",
+				event = "VeryLazy",
+				config = require("tools.notify"),
+			},
+		},
+		config = require("tools.noice"),
+	},
+
+	-- toggle term
+	{ "akinsho/toggleterm.nvim", version = "*", config = require("tools.toggleterm") },
+
+	-- copilot chat
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		dependencies = {
+			{ "zbirenbaum/copilot.lua" },
+			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+		},
+		branch = "main",
+		build = "make tiktoken", -- Only on MacOS or Linux
+		opts = {},
+		config = require("tools.copilot-chat"),
 	},
 }

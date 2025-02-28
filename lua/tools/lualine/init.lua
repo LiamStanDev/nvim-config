@@ -1,4 +1,4 @@
 return function()
-	local style = require("ui.lualine.style")
+	local style = require("tools.lualine.style")
 	require("lualine").setup(style)
 end

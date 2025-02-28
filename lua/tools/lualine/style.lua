@@ -1,4 +1,4 @@
-local component = require("ui.lualine.component")
+local component = require("tools.lualine.component")
 local M = {
 	options = {
 		icons_enabled = true,
@@ -18,7 +18,6 @@ local M = {
 	sections = {
 		lualine_a = {
 			component.custom_icons,
-			-- component.modes,
 		},
 		lualine_b = {
 			-- remote-nvim
@@ -57,12 +56,10 @@ local M = {
 		},
 		lualine_x = {
 			component.diagnostics,
-			-- component.lsp_progess,
 			component.lsp,
 			{
 				function()
 					return "󱞩"
-					-- return "﬌"
 				end,
 				separator = { left = "", right = "" },
 				color = { bg = "#8FBCBB", fg = "#000000" },

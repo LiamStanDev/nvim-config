@@ -17,12 +17,17 @@ local function on_attach(client, bufnr)
 	keymap("n", "gr", "<CMD>Lspsaga rename ++project<CR>", bufopts)
 	keymap("n", "go", "<CMD>Trouble symbols toggle<CR>", bufopts)
 	keymap("n", "gi", vim.lsp.buf.implementation, bufopts)
+	keymap("n", "gI", function()
+		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+	end)
 
 	if client.name == "omnisharp" then
 		keymap("n", "gd", "<cmd>lua require('omnisharp_extended').lsp_definitions()<cr>")
 	end
 	if client.name == "clangd" then
 		client.server_capabilities.signatureHelpProvider = false
+		-- clangd
+		keymap({ "n", "i", "v" }, "<A-s>", "<CMD>ClangdSwitchSourceHeader<CR>")
 	end
 
 	-- remove default formatter

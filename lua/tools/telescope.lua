@@ -1,5 +1,3 @@
-local config = require("core.globals")
-
 return function()
 	local telescope = require("telescope")
 
@@ -94,4 +92,8 @@ return function()
 	vim.api.nvim_create_user_command("ShowTasks", function()
 		require("ui.utils").open_task_menu(themes.get_dropdown({}))
 	end, { nargs = 0 })
+
+	local keymap = vim.keymap.set
+	-- task runner
+	keymap({ "n", "i", "v", "t" }, "<A-\\>", "<CMD>ShowTasks<CR>")
 end
