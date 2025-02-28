@@ -1,4 +1,17 @@
 -- task-runner
+
+local function cpp_build_single_file()
+	local command = "g++ -o /tmp/a.out -std=c++20 "
+	command = command .. vim.api.nvim_buf_get_name(0)
+	return command
+end
+
+local function run_python_file()
+	local command = "python "
+	command = command .. vim.api.nvim_buf_get_name(0)
+	return command
+end
+
 return {
 	cpp_cmake = {
 		{
@@ -12,15 +25,15 @@ return {
 		{ label = "Run Tests", command = "icpp test" },
 		{ label = "Build", command = "icpp build" },
 		{ label = "CMake Install", command = "icpp install" },
-		{ label = "Run", command = "cmake --build build --parallel 4 --target run" },
+		{ label = "Run", command = "cmake --build build --target run" },
 	},
 	cpp = {
-		{ label = "Build Single File", command = "g++ -o /tmp/a.out -std=c++23 " },
+		{ label = "Build Single File", command = cpp_build_single_file() },
 		{ label = "Run Single File", command = "/tmp/a.out" },
 		{ label = "Clang Format Init", command = "clang-format --style=Google -dump-config > .clang-format" },
 	},
 	python = {
-		{ label = "Run Script", command = "python " },
+		{ label = "Run Script", command = run_python_file() },
 		{ label = "Run Tests", command = "pytest" },
 	},
 	rust = {

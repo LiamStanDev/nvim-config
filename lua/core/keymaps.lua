@@ -36,8 +36,8 @@ local normal_mode = {
 	["<A-k>"] = ":m .-2<CR>==",
 
 	-- Buffer Navigate
-	["<A-l>"] = ":bnext<CR>",
-	["<A-h>"] = ":bprevious<CR>",
+	-- ["<A-l>"] = ":bnext<CR>",
+	-- ["<A-h>"] = ":bprevious<CR>",
 
 	-- black hole
 	["x"] = '"_x',
