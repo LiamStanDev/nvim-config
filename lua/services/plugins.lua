@@ -42,13 +42,13 @@ return {
 	-- dap
 	{
 		"mfussenegger/nvim-dap",
-		event = "BufReadPre",
+		lazy = true,
 		dependencies = {
 			"theHamsta/nvim-dap-virtual-text",
 			{
 				"rcarriga/nvim-dap-ui",
 				config = require("services.dapui"),
-				dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio", "folke/neodev.nvim" },
+				dependencies = { "nvim-neotest/nvim-nio", "folke/neodev.nvim" },
 			},
 		},
 		init = require("services.dap").init,

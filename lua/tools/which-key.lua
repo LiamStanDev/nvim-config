@@ -73,18 +73,13 @@ return function()
 		{ "<leader>d", group = "Debug" },
 		{ "<leader>db", "<CMD>lua require'dap'.toggle_breakpoint()<CR>", desc = "Toggle Breakpoint" },
 		{ "<leader>dl", "<CMD>:Telescope dap list_breakpoints<CR>", desc = "List Breakpoints" },
+		{ "<leader>dr", "<CMD>lua require'dap'.continue()<CR>", desc = "Start" },
 		{ "<leader>dc", "<CMD>lua require'dap'.continue()<CR>", desc = "Continue" },
 		{ "<leader>dq", "<CMD>lua require'dap'.disconnect()<CR>", desc = "Disconnect" },
 		{ "<leader>ds", "<CMD>lua require'dap'.step_into()<CR>", desc = "Step Into" },
 		{ "<leader>dn", "<CMD>lua require'dap'.step_over()<CR>", desc = "Step Over" },
 		{ "<leader>do", "<CMD>lua require'dap'.step_out()<CR>", desc = "Step Out" },
-		{
-			"<leader>dr",
-			function()
-				vim.api.nvim_command("lua require'dap'.continue()")
-			end,
-			desc = "Start",
-		},
+		{ "<leader>de", "<CMD>lua require'dap'.eval()<CR>", desc = "Eval" },
 		{ "<leader>du", "<CMD>lua require'dapui'.toggle({reset = true})<CR>", desc = "Toggle UI" },
 
 		-- git
