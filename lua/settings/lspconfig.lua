@@ -11,7 +11,7 @@ return function()
 		callback = function(event)
 			local map = vim.keymap.set
 			map("n", "gd", "<CMD>Lspsaga goto_definition<CR>", { desc = "Go to Definition" })
-			map("n", "gr", "<CMD>Lspsaga lsp_finder<CR>", { desc = "Go to References" })
+			map("n", "gr", "<CMD>Lspsaga finder<CR>", { desc = "Go to References" })
 			map("n", "gD", "<CMD>Lspsaga peek_definition<CR>", { desc = "Peek Definition" })
 			map("n", "gs", "<CMD>Lspsaga outline<CR>", { desc = "Outline Symbols" })
 			map("n", "gn", "<CMD>Lspsaga rename ++project<CR>", { desc = "Rename" })
@@ -103,7 +103,6 @@ return function()
 		if server == "tailwindcss-language-server" then
 			require("lspconfig").tailwindcss.setup({})
 			goto continue
-			return
 		else
 			require("lspconfig")[server].setup(opts)
 		end

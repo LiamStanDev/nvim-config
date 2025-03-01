@@ -83,7 +83,7 @@ function M.config()
 		sources = {
 			{ name = "lazydev", group_index = 0 }, -- nvim configuration
 			{ name = "nvim_lsp", group_index = 2 },
-			{ name = "nvim_lsp_signature_help" },
+			-- { name = "nvim_lsp_signature_help" },
 			{ name = "copilot", group_index = 2 },
 			{ name = "path" },
 			{ name = "luasnip", group_index = 2 },
@@ -92,7 +92,6 @@ function M.config()
 			{ name = "render-markdown", group_index = 2 },
 		},
 		confirm_opts = {
-			-- behavior = cmp.ConfirmBehavior.Replace,
 			select = false,
 		},
 		window = {
@@ -110,19 +109,12 @@ function M.config()
 		},
 	})
 
-	-- vim-dadbob
-	cmp.setup.filetype({ "sql" }, {
-		sources = {
-			{ name = "vim-dadbod-completion" },
-			{ name = "buffer" },
-		},
-	})
-
 	cmp.setup({
 		enabled = function()
-			return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+			return vim.bo.buftype ~= "prompt" or require("cmp_dap").is_dap_buffer()
 		end,
 	})
+
 	cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 		sources = {
 			{ name = "dap" },
@@ -131,7 +123,6 @@ function M.config()
 
 	cmp.setup.cmdline("/", {
 		mapping = cmdline_mapping(),
-		-- mappings = cmp.mapping.preset.cmdline(),
 		sources = {
 			{ name = "buffer" },
 		},
@@ -139,7 +130,6 @@ function M.config()
 
 	cmp.setup.cmdline(":", {
 		mapping = cmdline_mapping(),
-		-- mappings = cmp.mapping.preset.cmdline(),
 		sources = cmp.config.sources({
 			{ name = "cmdline" },
 			{ name = "path" },
@@ -147,7 +137,6 @@ function M.config()
 	})
 	cmp.setup.cmdline("@", {
 		mapping = cmdline_mapping(),
-		-- mappings = cmp.mapping.preset.cmdline(),
 		sources = cmp.config.sources({
 			{ name = "cmdline-prompt" },
 			{ name = "path" },

@@ -1,10 +1,6 @@
 return function()
 	local dapui = require("dapui")
 
-	-- see: https://github.com/rcarriga/nvim-dap-ui
-	require("neodev").setup({
-		library = { plugins = { "nvim-dap-ui" }, types = true },
-	})
 
 	dapui.setup({
 		icons = { expanded = "", collapsed = "", circular = "" },

@@ -38,6 +38,9 @@ function M.format_colorful(entry, item)
 		},
 		ellipsis_char = "...",
 		show_labelDetails = true,
+		symbol_map = { -- add more icon
+			Copilot = "",
+		},
 	})(entry, item)
 	local strings = vim.split(lspkind.kind, "%s", { trimempty = true })
 	-- print(vim.inspect(strings))
