@@ -1,89 +1,60 @@
 -- leader key
 vim.g.mapleader = " "
-local keymap = vim.api.nvim_set_keymap
-local opts_general = { noremap = true, silent = true }
+vim.g.maplocalleader = " "
 
-local insert_mode = {
-	-- ["kj"] = "<Esc>",
-	-- Move current line / block with Alt-j/k ala vscode.
-	["<A-j>"] = "<Esc>:m .+1<CR>==gi",
-	["<A-k>"] = "<Esc>:m .-2<CR>==gi",
+local map = vim.keymap.set
 
-	-- ["<C-j>"] = "<C-o>j",
-	-- ["<C-h>"] = "<C-o>h",
-	-- ["<C-k>"] = "<C-o>k",
-	-- ["<C-l>"] = "<C-o>l",
-}
+-- Clear highlights
+map("n", "<Esc>", "<CMD>nohlsearch<CR>")
 
-local normal_mode = {
-	-- Quick Curser
-	["<S-l>"] = "$",
-	["<S-h>"] = "^",
+-- Split window navigation
+map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-	["<C-h>"] = "<C-w>h",
-	["<C-j>"] = "<C-w>j",
-	["<C-k>"] = "<C-w>k",
-	["<C-l>"] = "<C-w>l",
+-- Disable arrow keys in normal mode
+map("n", "<left>", '<CMD>echo "Use h to move!!"<CR>')
+map("n", "<right>", '<CMD>echo "Use l to move!!"<CR>')
+map("n", "<up>", '<CMD>echo "Use k to move!!"<CR>')
+map("n", "<down>", '<CMD>echo "Use j to move!!"<CR>')
 
-	-- Resize with arrows
-	["<C-Up>"] = ":resize -2<CR>",
-	["<C-Down>"] = ":resize +2<CR>",
-	["<C-Left>"] = ":vertical resize -2<CR>",
-	["<C-Right>"] = ":vertical resize +2<CR>",
+-- Move line/block
+map({ "n", "i" }, "<A-j>", ":m .+1<CR>==", { desc = "Move line/block down" })
+map({ "n", "i" }, "<A-k>", ":m .-2<CR>==", { desc = "Move line/block up" })
+map("x", "<A-j>", ":m '>+1<CR>gv-gv", { desc = "Move line/block down" })
+map("x", "<A-k>", ":m '<-2<CR>gv-gv", { desc = "Move line/block up" })
 
-	-- Move current line / block with Alt-j/k a la vscode.
-	["<A-j>"] = ":m .+1<CR>==",
-	["<A-k>"] = ":m .-2<CR>==",
+-- Head and tail of line
+map("n", "<S-l>", "$", { desc = "Move to the end of the line" })
+map("n", "<S-h>", "^", { desc = "Move to the start of the line" })
 
-	-- Buffer Navigate
-	-- ["<A-l>"] = ":bnext<CR>",
-	-- ["<A-h>"] = ":bprevious<CR>",
+-- Resize with arrows
+map("n", "<C-Up>", ":resize -2<CR>", { desc = "Resize window up" })
+map("n", "<C-Down>", ":resize +2<CR>", { desc = "Resize window down" })
+map("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Resize window left" })
+map("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Resize window right" })
 
-	-- black hole
-	["x"] = '"_x',
-}
+-- Buffer Navigation
+-- keymap("n", "<A-l>", ":bnext<CR>", { desc = "Next buffer" })
+-- keymap("n", "<A-h>", ":bprevious<CR>", { desc = "Previous buffer" })
 
-local visual_mode = {
-	-- Better indenting
-	["<"] = "<gv",
-	[">"] = ">gv",
-	["x"] = '"_x',
-	-- ["<S-l>"] = "$",
-	-- ["<S-h>"] = "^",
-	-- ["p"] = '"0p',
-	-- ["P"] = '"0P',
-}
+-- Quick Indenting
+map("v", "<", "<gv", { desc = "Indent left" })
+map("v", ">", ">gv", { desc = "Indent right" })
 
-local visual_block_mode = {
-	-- Move current line / block with Alt-j/k ala vscode.
-	["<A-j>"] = ":m '>+1<CR>gv-gv",
-	["<A-k>"] = ":m '<-2<CR>gv-gv",
-	-- ["<S-l>"] = "$",
-	-- ["<S-h>"] = "^",
-}
+-- Command mode completion selection
+map("c", "<C-j>", "pumvisible() ? '<C-n>' : '<C-j>'", { expr = true })
+map("c", "<C-k>", "pumvisible() ? '<C-p>' : '<C-k>'", { expr = true })
 
-local command_mode = {
-	-- navigate tab completion with <c-j> and <c-k>
-	["<C-j>"] = 'pumvisible() ? "\\<C-n>" : "\\<Tab>"',
-	["<C-k>"] = 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"',
-}
+-- Save file
+map("n", "<leader>w", "<CMD>silent! w!<CR>", { desc = "Save file" })
+map("n", "<leader>W", "<CMD>silent! wa!<CR>", { desc = "Save all file" })
 
-for key, val in pairs(insert_mode) do
-	keymap("i", key, val, opts_general)
-end
+-- Quit
+map("n", "<leader>q", "<CMD>confirm q<CR>", { desc = "Quit" })
+map("n", "<leader>;", ":e $MYVIMRC<CR>", { desc = "Configuration" })
 
-for key, val in pairs(normal_mode) do
-	keymap("n", key, val, opts_general)
-end
-
-for key, val in pairs(visual_mode) do
-	keymap("v", key, val, opts_general)
-end
-
-for key, val in pairs(command_mode) do
-	keymap("c", key, val, { expr = true, noremap = true })
-end
-
-for key, val in pairs(visual_block_mode) do
-	keymap("x", key, val, opts_general)
-end
+-- Split window
+map("n", "<leader>bl", "<CMD>vsplit<CR>", { desc = "Split Right" })
+map("n", "<leader>bj", "<CMD>split<CR>", { desc = "Split Down" })
