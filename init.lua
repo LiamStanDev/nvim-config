@@ -102,8 +102,9 @@ config.colorscheme = "catppuccin"
 config.dashboard_logo = "AstronautSmall"
 
 -- border style
-config.cmp_window_border = "single" -- none, single, rounded
-config.which_key_window_border = "none" -- none, single, double, shadow
+config.cmp_window_border = "rounded" -- none, single, rounded
+config.lspsaga_window_border = "rounded" -- none, single, rounded
+config.which_key_window_border = "rounded" -- none, single, double, shadow
 
 -- show inline hint
 config.open_type_hint = true -- for variable

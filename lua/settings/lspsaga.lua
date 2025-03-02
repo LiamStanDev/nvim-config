@@ -1,9 +1,10 @@
+local config = require("core.globals")
+
 return {
 	ui = {
-		-- This option only works in Neovim 0.9
 		title = true,
 		-- Border type can be single, double, rounded, solid, shadow.
-		border = "single",
+		border = config.lspsaga_window_border,
 		winblend = 0,
 		expand = "",
 		collapse = "",
@@ -76,5 +77,11 @@ return {
 		sign = true,
 		sign_priority = 40,
 		virtual_text = true,
+	},
+	hover = {
+		-- If error when open link in WSL, checkout https://superuser.com/questions/1262977/open-browser-in-host-system-from-windows-subsystem-for-linux
+		open_link = "gx",
+		max_height = 0.8,
+		max_width = 0.9,
 	},
 }

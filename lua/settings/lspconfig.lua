@@ -90,6 +90,10 @@ return function()
 
 	local servers = require("core.globals").lsp_servers
 	for _, server in ipairs(servers) do
+		if server == "clangd" then
+			capabilities.offsetEncoding = { "utf-16" }
+		end
+
 		local opts = {
 			capabilities = capabilities,
 		}

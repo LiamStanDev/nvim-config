@@ -7,6 +7,11 @@ local map = vim.keymap.set
 -- Clear highlights
 map("n", "<Esc>", "<CMD>nohlsearch<CR>")
 
+-- No copy paste and delete
+map({ "v", "x" }, "p", "_P", { desc = "Disable copy when paste" })
+map({ "n", "v", "x" }, "x", '"_x', { desc = "Disable copy when delete" })
+map({ "n", "v", "x" }, "X", '"_X', { desc = "Disable copy when delete" })
+
 -- Split window navigation
 map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
