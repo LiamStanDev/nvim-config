@@ -2,7 +2,7 @@ return {
 	settings = {
 		python = {
 			analysis = {
-				-- typeCheckingMode = "strict",
+				typeCheckingMode = "strict",
 				diagnosticMode = "workspace",
 				autoSearchPaths = true, -- find "src" if no execution environments in config file
 				inlayHints = {

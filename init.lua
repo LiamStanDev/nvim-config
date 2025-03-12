@@ -36,8 +36,8 @@ config.lsp_servers = {
 	"jsonls",
 	"lua_ls",
 	"cssls",
-	"pylsp", -- pylsp doc more clean, and can reload mode no need to RestartLsp
-	-- "pyright",
+	-- "pylsp", -- pylsp doc more clean, and can reload mode no need to RestartLsp
+	"pyright",
 	"bashls",
 	"dockerls",
 	"ts_ls",
