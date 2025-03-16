@@ -16,6 +16,15 @@ return {
 				auto_install = true,
 			})
 		end,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-context", -- pin function signature on top
+			event = { "BufReadPost", "BufNewFile" },
+			opts = {
+				-- I just want to show the function signature
+				max_lines = 4, -- =0 means no limit
+				trim_scope = "inner",
+			},
+		},
 	},
 
 	-- Autopairs
@@ -73,7 +82,7 @@ return {
 			input = { enabled = true },
 			picker = require("settings.snacks.picker"),
 			notifier = require("settings.snacks.notifier"),
-			quickfile = { enabled = false },
+			quickfile = { enabled = true },
 			scope = { enabled = true },
 			scroll = { enabled = false },
 			statuscolumn = { enabled = true },
@@ -81,6 +90,7 @@ return {
 			terminal = require("settings.snacks.terminal"),
 			lazygit = require("settings.snacks.lazygit"),
 		},
+		dependencies = {},
 	},
 
 	-- Neovim notifications, LSP progress messages and input ui

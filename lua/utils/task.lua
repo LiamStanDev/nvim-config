@@ -30,45 +30,31 @@ local function detect_project_type()
 	end
 end
 
-function M.open_task_menu(opts)
-	local pickers = require("telescope.pickers")
-	local finders = require("telescope.finders")
-	local actions = require("telescope.actions")
-	local action_state = require("telescope.actions.state")
-	local generic_sorter = require("telescope.config").values.generic_sorter
-
+function M.open_task_menu()
 	local project_type = detect_project_type() or ""
-	vim.notify(project_type)
+	vim.notify("Project type: " .. project_type)
 	local tasks = require("tasks")[project_type] or {}
+	if #tasks == 0 then
+		vim.notify("No tasks available for project type: " .. project_type, vim.log.levels.WARN)
+		return
+	end
 
-	opts = opts or {}
-	pickers
-		.new(opts, {
-			prompt_title = "Select Task",
-			finder = finders.new_table({
-				results = tasks,
-				entry_maker = function(entry)
-					return {
-						value = entry,
-						display = entry.label,
-						ordinal = entry.label,
-					}
-				end,
-			}),
-			sorter = generic_sorter({}),
-			attach_mappings = function(prompt_bufnr, map)
-				actions.select_default:replace(function()
-					actions.close(prompt_bufnr)
-					local selection = action_state.get_selected_entry()
-					local user_cmd = vim.fn.input("command: ", selection.value.command)
-					local dir = vim.fn.getcwd()
-					Snacks.terminal.open(user_cmd, { cwd = dir, auto_close = false })
-				end)
-				map("i", "<ESC>", actions.close)
-				return true
-			end,
-		})
-		:find()
+	local entries = {}
+	for _, task in ipairs(tasks) do
+		table.insert(entries, { label = task.label, command = task.command })
+	end
+	vim.ui.select(entries, {
+		prompt = "Select Task",
+		format_item = function(item)
+			return item.label
+		end,
+	}, function(selected, _)
+		if selected then
+			local user_cmd = vim.fn.input("command: ", selected.command)
+			local dir = vim.fn.getcwd()
+			Snacks.terminal.open(user_cmd, { cwd = dir, auto_close = false })
+		end
+	end)
 end
 
 return M

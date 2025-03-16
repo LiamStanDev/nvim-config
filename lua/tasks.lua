@@ -37,6 +37,7 @@ return {
 		{ label = "Run Tests", command = "pytest" },
 	},
 	rust = {
+		{ label = "Check", command = "cargo check" },
 		{ label = "Build", command = "cargo build" },
 		{ label = "Run", command = "cargo run" },
 		{ label = "Test", command = "cargo test" },

@@ -1,7 +1,14 @@
 local map = vim.keymap.set
 
+vim.api.nvim_create_user_command("ShowTasks", function()
+	require("utils.task").open_task_menu()
+end, { nargs = 0 })
+
 -- Top Pickers & Explorer
 -- stylua: ignore start
+
+-- task runner
+map({ "n", "i", "v", "t" }, "<A-\\>", "<CMD>ShowTasks<CR>")
 
 -- git
 map("n", "<leader>gb", function() Snacks.picker.git_branches() end, { desc = "Git Branches" })
@@ -32,5 +39,5 @@ map("n", "<leader>sC", function() Snacks.picker.colorschemes() end, { desc = "Co
 
 return {
 	enabled = true,
-	prompt = "   ",
+	-- prompt = "   ",
 }
