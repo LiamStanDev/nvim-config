@@ -8,7 +8,7 @@ local map = vim.keymap.set
 map("n", "<Esc>", "<CMD>nohlsearch<CR>")
 
 -- No copy paste and delete
-map({ "v", "x" }, "p", "_P", { desc = "Disable copy when paste" })
+-- map({ "v", "x" }, "p", "_P", { desc = "Disable copy when paste" })
 map({ "n", "v", "x" }, "x", '"_x', { desc = "Disable copy when delete" })
 map({ "n", "v", "x" }, "X", '"_X', { desc = "Disable copy when delete" })
 

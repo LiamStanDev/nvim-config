@@ -59,16 +59,35 @@ return {
 		config = require("settings.nvim-cmp").config,
 	},
 
-	-- Neovim notifications and LSP progress messages
+	-- input and select ui
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		---@type snacks.Config
+		opts = {
+			bigfile = { enabled = true },
+			dashboard = require("settings.snacks.dashboard"),
+			explorer = require("settings.snacks.explorer"),
+			indent = { enabled = true },
+			input = { enabled = true },
+			picker = { enabled = false },
+			notifier = { enabled = true },
+			quickfile = { enabled = false },
+			scope = { enabled = true },
+			scroll = { enabled = false },
+			statuscolumn = { enabled = true },
+			words = { enabled = false },
+			terminal = require("settings.snacks.terminal"),
+		},
+	},
+
+	-- Neovim notifications, LSP progress messages and input ui
 	{
 		"folke/noice.nvim", -- for command line pop window and nottify
 		event = "VeryLazy",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
-			{
-				"rcarriga/nvim-notify",
-				config = require("settings.notify"),
-			},
 		},
 		config = require("settings.noice"),
 	},
@@ -137,21 +156,21 @@ return {
 		config = require("settings.telescope"),
 	},
 
-	-- Column segments (ufo, dap, gitsign)
-	{
-		"luukvbaal/statuscol.nvim",
-		config = function()
-			local builtin = require("statuscol.builtin")
-			require("statuscol").setup({
-				relculright = true,
-				segments = {
-					{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-					{ text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-					{ text = { "%s" }, click = "v:lua.ScSa" },
-				},
-			})
-		end,
-	},
+	-- Column segments (ufo, dap, gitsign) [replace by snacks.nvim]
+	-- {
+	-- 	"luukvbaal/statuscol.nvim",
+	-- 	config = function()
+	-- 		local builtin = require("statuscol.builtin")
+	-- 		require("statuscol").setup({
+	-- 			relculright = true,
+	-- 			segments = {
+	-- 				{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+	-- 				{ text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+	-- 				{ text = { "%s" }, click = "v:lua.ScSa" },
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 
 	-- Markdown
 	{
@@ -163,12 +182,12 @@ return {
 		},
 	},
 
-	-- Dashboard
-	{
-		"goolord/alpha-nvim",
-		dependencies = { "echasnovski/mini.icons" },
-		config = require("settings.alpha"),
-	},
+	-- Dashboard [replace by snack.nvim]
+	-- {
+	-- 	"goolord/alpha-nvim",
+	-- 	dependencies = { "echasnovski/mini.icons" },
+	-- 	config = require("settings.alpha"),
+	-- },
 
 	-- File explorer
 	{ "echasnovski/mini.files", version = false, config = require("settings.mini-files") },
@@ -176,14 +195,14 @@ return {
 	-- Status line
 	{ "nvim-lualine/lualine.nvim", event = "VeryLazy", config = require("settings.lualine") },
 
-	-- Terminal
-	{ "akinsho/toggleterm.nvim", version = "*", config = require("settings.toggleterm") },
+	-- Terminal [replace by snacks.nvim]
+	-- { "akinsho/toggleterm.nvim", version = "*", config = require("settings.toggleterm") },
 
 	-- Copilot
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		dependencies = {
-			{ "zbirenbaum/copilot.lua", config = true },
+			{ "zbirenbaum/copilot.lua", event = "InsertEnter", config = true },
 			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
 		},
 		branch = "main",
@@ -191,29 +210,29 @@ return {
 		config = require("settings.copilot-chat"),
 	},
 
-	-- Indent
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			require("ibl").setup({
-				indent = { char = "▎" },
-				scope = {
-					enabled = false,
-					show_exact_scope = true,
-					highlight = { "IBLScope" },
-				},
-			})
-		end,
-	},
-	{
-		"echasnovski/mini.indentscope",
-		version = "*",
-		event = { "BufReadPre", "BufNewFile" },
-		init = require("settings.indentscope").init,
-		config = require("settings.indentscope").config,
-	},
+	-- Indent [replace by snackes.nvim]
+	-- {
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- 	main = "ibl",
+	-- 	event = { "BufReadPost", "BufNewFile" },
+	-- 	config = function()
+	-- 		require("ibl").setup({
+	-- 			indent = { char = "▎" },
+	-- 			scope = {
+	-- 				enabled = false,
+	-- 				show_exact_scope = true,
+	-- 				highlight = { "IBLScope" },
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"echasnovski/mini.indentscope",
+	-- 	version = "*",
+	-- 	event = { "BufReadPre", "BufNewFile" },
+	-- 	init = require("settings.indentscope").init,
+	-- 	config = require("settings.indentscope").config,
+	-- },
 
 	--  Code folding
 	{
@@ -256,6 +275,7 @@ return {
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = require("settings.todo-comment"),
+		-- config = true,
 	},
 
 	-- Text Color

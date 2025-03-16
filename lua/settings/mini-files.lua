@@ -59,7 +59,7 @@ return function()
 	})
 
 	local map = vim.keymap.set
-	map("n", "<leader>e", function()
+	map("n", "<leader>E", function()
 		if minifiles.get_explorer_state() then
 			minifiles.close()
 		else

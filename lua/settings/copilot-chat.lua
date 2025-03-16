@@ -7,7 +7,8 @@ return function()
 		},
 
 		sticky = {
-			"#files:full",
+			"#files",
+			"$gpt-4o",
 		},
 
 		-- for render markdown
