@@ -14,7 +14,7 @@ return function()
 	require("noice").setup({
 		lsp = {
 			progress = {
-				enabled = true,
+				enabled = false, -- use Snacks.nvim notifier instead
 				format = {
 					{ "{spinner} ", hl_group = "NoiceLspProgressSpinner" },
 					{ "{data.progress.title} ", hl_group = "NoiceLspProgressTitle" },

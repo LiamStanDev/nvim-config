@@ -71,14 +71,15 @@ return {
 			explorer = require("settings.snacks.explorer"),
 			indent = { enabled = true },
 			input = { enabled = true },
-			picker = { enabled = false },
-			notifier = { enabled = true },
+			picker = require("settings.snacks.picker"),
+			notifier = require("settings.snacks.notifier"),
 			quickfile = { enabled = false },
 			scope = { enabled = true },
 			scroll = { enabled = false },
 			statuscolumn = { enabled = true },
 			words = { enabled = false },
 			terminal = require("settings.snacks.terminal"),
+			lazygit = require("settings.snacks.lazygit"),
 		},
 	},
 
@@ -133,28 +134,28 @@ return {
 		config = require("settings.gitsigns"),
 	},
 
-	-- Telescope
-	{
-		"nvim-telescope/telescope.nvim",
-		event = "VimEnter",
-		branch = "0.1.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons",
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-				cond = function()
-					return vim.fn.executable("make") == 1
-				end,
-			},
-			{
-				"tomasky/bookmarks.nvim",
-				config = true,
-			},
-		},
-		config = require("settings.telescope"),
-	},
+	-- Telescope [replace by snacks.nvim picker]
+	-- {
+	-- 	"nvim-telescope/telescope.nvim",
+	-- 	event = "VimEnter",
+	-- 	branch = "0.1.x",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"nvim-tree/nvim-web-devicons",
+	-- 		{
+	-- 			"nvim-telescope/telescope-fzf-native.nvim",
+	-- 			build = "make",
+	-- 			cond = function()
+	-- 				return vim.fn.executable("make") == 1
+	-- 			end,
+	-- 		},
+	-- 		{
+	-- 			"tomasky/bookmarks.nvim",
+	-- 			config = true,
+	-- 		},
+	-- 	},
+	-- 	config = require("settings.telescope"),
+	-- },
 
 	-- Column segments (ufo, dap, gitsign) [replace by snacks.nvim]
 	-- {

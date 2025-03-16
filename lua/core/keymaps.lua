@@ -41,8 +41,8 @@ map("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Resize window left" })
 map("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Resize window right" })
 
 -- Buffer Navigation
--- keymap("n", "<A-l>", ":bnext<CR>", { desc = "Next buffer" })
--- keymap("n", "<A-h>", ":bprevious<CR>", { desc = "Previous buffer" })
+map("n", "<A-l>", ":bnext<CR>", { desc = "Next buffer" })
+map("n", "<A-h>", ":bprevious<CR>", { desc = "Previous buffer" })
 
 -- Quick Indenting
 map("v", "<", "<gv", { desc = "Indent left" })

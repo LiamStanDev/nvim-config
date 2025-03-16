@@ -1,7 +1,7 @@
 -- task-runner
 
 local function cpp_build_single_file()
-	local command = "g++ -o /tmp/a.out -std=c++20 "
+	local command = "g++ -g -o /tmp/a.out -std=c++20 "
 	command = command .. vim.api.nvim_buf_get_name(0)
 	return command
 end
