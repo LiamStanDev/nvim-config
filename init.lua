@@ -98,9 +98,6 @@ config.dap_servers = {
 -- set color theme here
 config.colorscheme = "catppuccin"
 
--- set the logo. see ./lua/ui/style/header.lua
-config.dashboard_logo = "AstronautSmall"
-
 -- border style
 config.cmp_window_border = "rounded" -- none, single, rounded
 config.lspsaga_window_border = "rounded" -- none, single, rounded
