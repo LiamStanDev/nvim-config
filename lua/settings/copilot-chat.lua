@@ -19,7 +19,7 @@ return function()
 
 	-- copilot chat
 	local map = vim.keymap.set
-	map({ "n", "i", "v", "t" }, "<A-]>", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle copilot chat" })
+	map({ "n", "i", "v", "t" }, "<A-\\>", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle copilot chat" })
 	map({ "n", "v" }, "<leader>ad", "<CMD>Copilot disable<CR>", { desc = "Copilot Disable" })
 	map({ "n", "v" }, "<leader>ae", "<CMD>Copilot enable<CR>", { desc = "Copilot Enable" })
 	map({ "n", "v" }, "<leader>aa", "<CMD>CopilotChatToggle<CR>", { desc = "Toggle Chat" })

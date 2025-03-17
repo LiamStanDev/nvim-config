@@ -8,7 +8,7 @@ end, { nargs = 0 })
 -- stylua: ignore start
 
 -- task runner
-map({ "n", "i", "v", "t" }, "<A-\\>", "<CMD>ShowTasks<CR>")
+map({ "n", "i", "v", "t" }, "<A-]>", "<CMD>ShowTasks<CR>")
 
 -- git
 map("n", "<leader>gb", function() Snacks.picker.git_branches() end, { desc = "Git Branches" })
