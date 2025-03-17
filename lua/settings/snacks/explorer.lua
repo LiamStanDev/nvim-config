@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 map("n", "<leader>e", function()
-	Snacks.explorer()
+	Snacks.picker.explorer({ hidden = true })
 end, { desc = "Explorer" })
 
 return {

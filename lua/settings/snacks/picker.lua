@@ -16,9 +16,9 @@ map("n", "<leader>gl", function() Snacks.picker.git_log() end, { desc = "Git Log
 map("n", "<leader>gS", function() Snacks.picker.git_stash() end, { desc = "Git Stash" })
 
 -- search
-map("n", "<leader>p", function() Snacks.picker.files() end, { desc = "Smart Find Files" })
+map("n", "<leader>p", function() Snacks.picker.files({ hidden = true }) end, { desc = "Smart Find Files" })
 map("n", "<leader>sb", function() Snacks.picker.buffers() end, { desc = "Buffers" })
-map("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "Grep" })
+map("n", "<leader>sg", function() Snacks.picker.grep({ hidden = true }) end, { desc = "Grep" })
 map("n", "<leader>s:", function() Snacks.picker.command_history() end, { desc = "Command History" })
 map("n", "<leader>sn", function() Snacks.picker.notifications() end, { desc = "Notification History" })
 map("n", "<leader>sp", function() Snacks.picker.projects() end, { desc = "Projects" })
