@@ -28,6 +28,7 @@ return function()
 			map("n", "gI", function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 			end)
+			map("n", "gR", "<CMD>LspRestart<CR>", { desc = "Lsp Restart" })
 
 			local client = vim.lsp.get_client_by_id(event.data.client_id)
 			if
